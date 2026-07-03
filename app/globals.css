@@ -22,12 +22,11 @@
 }
 
 body {
-  background-color: var(--background);
+  background-color: transparent;
   color: var(--foreground);
 }
 
-.hero{
-  background-image: url('/images/background-hero.png');
+.hero {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -112,4 +111,130 @@ body {
     flex-wrap: wrap;
     justify-content: center;
   }
+}
+
+
+.grid-pattern{
+    will-change:transform;
+    transform-style:preserve-3d;
+
+    background-image:
+      linear-gradient(rgba(15,27,51,.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(15,27,51,.04) 1px, transparent 1px);
+
+    background-size:48px 48px;
+
+    animation:gridMove 25s linear infinite;
+}
+
+.aurora{
+
+position:absolute;
+inset:-20%;
+
+background:
+radial-gradient(circle at 20% 30%,rgba(59,130,246,.12),transparent 35%),
+radial-gradient(circle at 80% 70%,rgba(6,182,212,.10),transparent 35%),
+radial-gradient(circle at 50% 50%,rgba(168,85,247,.08),transparent 45%);
+
+filter:blur(90px);
+
+animation:aurora 18s ease-in-out infinite alternate;
+}
+
+@keyframes aurora{
+
+0%{
+transform:translate(-4%,-3%) scale(1);
+}
+
+100%{
+transform:translate(4%,3%) scale(1.15);
+}
+
+}
+
+.cursorGlow{
+
+position:absolute;
+
+width:600px;
+height:600px;
+
+border-radius:9999px;
+
+background:
+radial-gradient(circle,
+rgba(59,130,246,.08),
+transparent 70%);
+
+pointer-events:none;
+
+filter:blur(50px);
+
+mix-blend-mode:screen;
+
+transition:transform .08s linear;
+}
+
+.particles{
+
+position:absolute;
+inset:0;
+
+background-image:
+radial-gradient(circle,rgba(59,130,246,.2) 1px,transparent 1px);
+
+background-size:180px 180px;
+
+animation:particles 45s linear infinite;
+
+opacity:.25;
+}
+
+@keyframes particles{
+
+from{
+
+transform:translateY(0);
+
+}
+
+to{
+
+transform:translateY(-180px);
+
+}
+
+}
+
+.grid-pattern::after{
+
+content:"";
+
+position:absolute;
+
+inset:0;
+
+background:inherit;
+
+opacity:.15;
+
+animation:gridPulse 6s ease-in-out infinite;
+}
+
+@keyframes gridPulse{
+
+0%,100%{
+
+opacity:.12;
+
+}
+
+50%{
+
+opacity:.28;
+
+}
+
 }
