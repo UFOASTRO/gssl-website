@@ -1,26 +1,115 @@
+@import url('https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500,300,400&display=swap');
 @import "tailwindcss";
 
+@theme {
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-instrument), var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+
+  --color-navy-950: #0F1B33;
+  --color-navy-900: #23355C;
+  --color-navy-700: #35507F;
+  --color-blue-400: #6E93C7;
+  --color-blue-100: #DCE5F2;
+  --color-white: #FFFFFF;
+  --color-gray-50: #F6F8FB;
+  --color-gray-500: #5B6472;
+  --color-gray-900: #10182B;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --background: var(--color-white);
+  --foreground: var(--color-gray-900);
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+}
+
+.hero{
+  background-image: url('/images/background-hero.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100vh;
+}
+
+/* Custom scrollbar to match the design */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-navy-950);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-navy-700);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-blue-400);
+}
+
+.globe-container {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  height: 600px;
+  margin: 0 auto;
+}
+
+.globe-label {
+  position: absolute;
+  bottom: anchor(top);
+  left: anchor(center);
+  translate: -50% 0;
+  margin-bottom: 8px;
+  pointer-events: auto;
+  background: rgba(10, 20, 40, 0.85);
+  color: #eaf2ff;
+  border: 1px solid #4A9EFF;
+  border-radius: 999px;
+  padding: 4px 10px;
+  font-size: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  transition: opacity 0.3s ease, transform 0.2s ease, padding 0.2s ease, background 0.2s ease;
+  cursor: pointer;
+}
+
+/* COBE sets a --cobe-visible-{id} custom property to 1 when that marker
+   faces the camera and 0 when it has rotated to the back of the globe.
+   Generate one rule per marker id (map over MARKERS) so labels fade out
+   instead of floating over the globe when hidden. */
+.globe-label[data-marker-id='sf']       { opacity: var(--cobe-visible-sf, 0); }
+.globe-label[data-marker-id='london']   { opacity: var(--cobe-visible-london, 0); }
+.globe-label[data-marker-id='tokyo']    { opacity: var(--cobe-visible-tokyo, 0); }
+.globe-label[data-marker-id='sydney']   { opacity: var(--cobe-visible-sydney, 0); }
+.globe-label[data-marker-id='saopaulo'] { opacity: var(--cobe-visible-saopaulo, 0); }
+.globe-label[data-marker-id='capetown'] { opacity: var(--cobe-visible-capetown, 0); }
+
+.globe-label.expanded {
+  transform: scale(1.08);
+  padding: 8px 14px;
+  background: rgba(10, 20, 40, 0.97);
+}
+
+.globe-label__detail {
+  font-size: 11px;
+  color: #9fc4ff;
+}
+
+/* Fallback for browsers without anchor positioning */
+@supports not (anchor-name: --test) {
+  .globe-label {
+    position: static;
+    display: inline-flex;
+    margin: 4px;
+  }
+  .globe-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 }
