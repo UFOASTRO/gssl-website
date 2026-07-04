@@ -1,5 +1,6 @@
 import React from "react";
 import { ArrowUpRight, Mail, MapPin, Phone } from "lucide-react";
+import Link from "next/link";
 
 export default function ContactFooter() {
   return (
@@ -7,101 +8,70 @@ export default function ContactFooter() {
       {/* Contact Section */}
       <section id="contact" className="w-full bg-[#f8f9fa] py-24 sm:py-32 rounded-[3rem] mt-[-2rem] relative z-20 shadow-sm border-t border-gray-100">
         <div className="max-w-[1320px] mx-auto px-6 sm:px-8 lg:px-12">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
-            
-            <div className="flex flex-col">
-              <h2 className="font-display text-navy-900 text-4xl sm:text-5xl lg:text-6xl font-semibold leading-tight mb-8">
-                Ready to build what matters?
-              </h2>
-              <p className="text-gray-600 text-lg leading-relaxed mb-12 max-w-lg">
-                Whether you&apos;re looking to scale an enterprise, implement a state-wide initiative, or partner on digital verification—we have the expertise to execute.
-              </p>
-
-              <div className="flex flex-col gap-8">
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center flex-shrink-0">
-                    <MapPin className="w-5 h-5 text-blue-600" />
-                  </div>
-                  <div>
-                    <h4 className="text-navy-900 font-semibold mb-1">Headquarters (Lagos)</h4>
-                    <p className="text-gray-600">3B, Tunde Gabby Street, behind County Hospital, Ogba Aguda / Ojodu, Lagos, Nigeria</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center flex-shrink-0">
-                    <MapPin className="w-5 h-5 text-blue-600" />
-                  </div>
-                  <div>
-                    <h4 className="text-navy-900 font-semibold mb-1">Abuja Office</h4>
-                    <p className="text-gray-600">Suite 204, Central Business District, Abuja, FCT, Nigeria</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center flex-shrink-0">
-                    <MapPin className="w-5 h-5 text-blue-600" />
-                  </div>
-                  <div>
-                    <h4 className="text-navy-900 font-semibold mb-1">Port Harcourt Office</h4>
-                    <p className="text-gray-600">14 Trans Amadi Industrial Layout, Port Harcourt, Rivers State, Nigeria</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center flex-shrink-0">
-                    <Phone className="w-5 h-5 text-blue-600" />
-                  </div>
-                  <div>
-                    <h4 className="text-navy-900 font-semibold mb-1">Call Us</h4>
-                    <p className="text-gray-600">+234 802 303 3816 <br/> +234 803 411 4760</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center flex-shrink-0">
-                    <Mail className="w-5 h-5 text-blue-600" />
-                  </div>
-                  <div>
-                    <h4 className="text-navy-900 font-semibold mb-1">Email Us</h4>
-                    <p className="text-gray-600">corporate@globalsightservices.com</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Contact Form */}
-            <div className="bg-white rounded-[2rem] p-8 sm:p-12 border border-gray-100 shadow-sm h-fit">
-              <form className="flex flex-col gap-6">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  <div className="flex flex-col gap-2">
-                    <label className="text-sm font-semibold text-navy-900">First Name</label>
-                    <input type="text" className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-all" placeholder="John" />
-                  </div>
-                  <div className="flex flex-col gap-2">
-                    <label className="text-sm font-semibold text-navy-900">Last Name</label>
-                    <input type="text" className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-all" placeholder="Doe" />
-                  </div>
-                </div>
-
-                <div className="flex flex-col gap-2">
-                  <label className="text-sm font-semibold text-navy-900">Email Address</label>
-                  <input type="email" className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-all" placeholder="john@company.com" />
-                </div>
-
-                <div className="flex flex-col gap-2">
-                  <label className="text-sm font-semibold text-navy-900">How can we help?</label>
-                  <textarea rows={4} className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-all resize-none" placeholder="Tell us about your project or inquiry..."></textarea>
-                </div>
-
-                <button type="button" className="group mt-4 flex items-center justify-center bg-navy-900 text-white font-medium rounded-xl py-4 hover:bg-navy-800 transition-colors duration-300 w-full">
-                  <span className="mr-2">Send Message</span>
-                  <ArrowUpRight className="w-4 h-4 transition-transform duration-500 group-hover:translate-x-1 group-hover:-translate-y-1" />
-                </button>
-              </form>
-            </div>
-
+          
+          <div className="max-w-3xl mx-auto text-center mb-16">
+            <h2 className="font-display text-navy-900 text-4xl sm:text-5xl lg:text-6xl font-semibold leading-tight mb-6">
+              Ready to build what matters?
+            </h2>
+            <p className="text-gray-600 text-lg leading-relaxed">
+              Whether you&apos;re looking to scale an enterprise, implement a state-wide initiative, or partner on digital verification—we have the expertise to execute.
+            </p>
           </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
+            {/* Card 1 */}
+            <div className="bg-white p-8 sm:p-10 rounded-[2rem] border border-gray-100 shadow-sm flex flex-col items-center text-center hover:shadow-md transition-shadow">
+              <div className="w-16 h-16 rounded-full bg-blue-50 flex items-center justify-center mb-6">
+                <MapPin className="w-7 h-7 text-blue-600" />
+              </div>
+              <h4 className="text-navy-900 text-2xl font-semibold mb-4">Headquarters</h4>
+              <p className="text-gray-600 text-lg leading-relaxed">
+                3B, Tunde Gabby Street, behind County Hospital, Ogba Aguda / Ojodu, Lagos, Nigeria
+              </p>
+            </div>
+
+            {/* Card 2 */}
+            <div className="bg-white p-8 sm:p-10 rounded-[2rem] border border-gray-100 shadow-sm flex flex-col items-center text-center hover:shadow-md transition-shadow">
+              <div className="w-16 h-16 rounded-full bg-blue-50 flex items-center justify-center mb-6">
+                <MapPin className="w-7 h-7 text-blue-600" />
+              </div>
+              <h4 className="text-navy-900 text-2xl font-semibold mb-4">Regional Offices</h4>
+              <p className="text-gray-600 text-lg leading-relaxed flex flex-col gap-2">
+                <span><strong>Abuja:</strong> Suite 204, Central Business District</span>
+                <span><strong>Kano:</strong> Suite 63/64, Yayo, Farm Centre Market</span>
+                <span><strong>Oyo:</strong> Ministry of Trade Secretariat, Agodi</span>
+              </p>
+            </div>
+
+            {/* Card 3 */}
+            <div className="bg-white p-8 sm:p-10 rounded-[2rem] border border-gray-100 shadow-sm flex flex-col items-center text-center hover:shadow-md transition-shadow">
+              <div className="w-16 h-16 rounded-full bg-blue-50 flex items-center justify-center mb-6">
+                <Phone className="w-7 h-7 text-blue-600" />
+              </div>
+              <h4 className="text-navy-900 text-2xl font-semibold mb-4">Contact Details</h4>
+              <p className="text-gray-600 text-lg leading-relaxed mb-6">
+                +234 802 303 3816<br/>
+                +234 803 411 4760
+              </p>
+              <a href="mailto:globalsightservices@gmail.com" className="text-blue-600 font-medium hover:text-blue-700 hover:underline flex items-center gap-2 text-lg">
+                <Mail className="w-5 h-5" /> globalsightservices@gmail.com
+              </a>
+            </div>
+          </div>
+
+          {/* Call to Action Block */}
+          <div className="flex justify-center items-center w-full">
+            <Link 
+              href="/contact"
+              className="group flex items-center justify-center gap-4 bg-navy-900 text-white font-medium rounded-full py-6 px-12 sm:px-16 text-xl sm:text-2xl hover:bg-navy-800 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+            >
+              Start Your Project
+              <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center group-hover:bg-white/30 transition-colors">
+                <ArrowUpRight className="w-5 h-5 transition-transform duration-500 group-hover:translate-x-1 group-hover:-translate-y-1" />
+              </div>
+            </Link>
+          </div>
+          
         </div>
       </section>
 

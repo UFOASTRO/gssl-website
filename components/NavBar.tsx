@@ -62,7 +62,7 @@ export default function NavBar() {
         <nav
           className={`w-full max-w-[1320px] mx-auto transition-all duration-500 ease-in-out flex items-center justify-between ${
             scrolled
-              ? "bg-white/95 backdrop-blur-md rounded-full py-2 px-3 sm:px-4 shadow-sm border border-gray-200"
+              ? "bg-white/95 backdrop-blur-md rounded-full py-2 px-3 sm:px-4 shadow-sm"
               : "bg-transparent py-5 px-6 sm:px-8"
           }`}
         >

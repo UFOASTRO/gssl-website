@@ -1,79 +1,82 @@
 import React from "react";
-import { MapPin } from "lucide-react";
+import Image from "next/image";
 
 export default function NationalFootprint() {
-  const locations = [
-    { name: "Lagos", type: "Head Office", top: "70%", left: "20%" },
-    { name: "Abuja", type: "Regional Office", top: "50%", left: "45%" },
-    { name: "Kano", type: "Regional Office", top: "20%", left: "55%" },
-    { name: "Ibadan (Oyo)", type: "Consultant Office", top: "65%", left: "25%" },
-    { name: "Bauchi", type: "Partnership", top: "35%", left: "70%" },
+  const logos = [
+    { name: "Oyo", src: "/Partners-logos/oyo-state-logo-removebg-preview.png" },
+    { name: "Kano", src: "/Partners-logos/kano-state-logo-removebg-preview.png" },
+    { name: "Bauchi", src: "/Partners-logos/bauchi-state-logo-removebg-preview.png" },
+    { name: "Lagos", src: "/Partners-logos/lagos-state.png" },
   ];
 
   return (
-    <section className="w-full bg-[#0a192f] text-white py-24 sm:py-32 relative overflow-hidden">
+    <section className="w-full bg-[#0a192f] text-white py-16 sm:py-24 relative overflow-hidden">
       {/* Background Decorative Elements */}
       <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-blue-500/10 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/3 pointer-events-none" />
-      
-      <div className="max-w-[1320px] mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
-          
-          <div className="flex flex-col">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-sm font-semibold mb-8 w-fit">
-              <MapPin className="w-4 h-4" />
-              National Footprint
-            </div>
-            <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-semibold leading-tight mb-8">
-              Impacting lives across Nigeria.
-            </h2>
-            <p className="text-gray-300 text-lg leading-relaxed mb-8 max-w-lg">
-              With our headquarters in Lagos and regional offices spanning Abuja, Kano, and Oyo State, our reach is genuinely national. 
-            </p>
-            <p className="text-gray-300 text-lg leading-relaxed mb-12 max-w-lg">
-              We have partnered with state governments, trained thousands of artisans, and impacted over <span className="text-white font-bold">300,000+ lives</span> through our grassroots empowerment programmes across 5+ states.
-            </p>
 
-            <div className="grid grid-cols-2 gap-8">
-              <div>
-                <div className="text-4xl font-display font-bold text-white mb-2">300k+</div>
-                <div className="text-gray-400">Lives Impacted</div>
-              </div>
-              <div>
-                <div className="text-4xl font-display font-bold text-white mb-2">5+</div>
-                <div className="text-gray-400">States Activated</div>
-              </div>
+      <div className="max-w-[1320px] mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
+        <h2 className="font-display text-white text-3xl sm:text-4xl font-semibold leading-tight mb-16">
+          Our National Footprint or Regional Impact
+        </h2>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-stretch">
+          
+          {/* Left Column: 2x2 Logo Grid */}
+          <div className="relative w-full max-w-[500px] mx-auto lg:mx-0">
+            {/* SVG Connecting Lines */}
+            <svg 
+              className="absolute inset-0 w-full h-full pointer-events-none z-0" 
+              style={{ stroke: "rgba(59, 130, 246, 0.4)", strokeWidth: 2, filter: "drop-shadow(0 0 8px rgba(59, 130, 246, 0.5))" }}
+            >
+              {/* Horizontal Top */}
+              <line x1="25%" y1="25%" x2="75%" y2="25%" className="animate-pulse" />
+              {/* Horizontal Bottom */}
+              <line x1="25%" y1="75%" x2="75%" y2="75%" className="animate-pulse" style={{ animationDelay: '0.5s' }} />
+              {/* Vertical Left */}
+              <line x1="25%" y1="25%" x2="25%" y2="75%" className="animate-pulse" style={{ animationDelay: '1s' }} />
+              {/* Vertical Right */}
+              <line x1="75%" y1="25%" x2="75%" y2="75%" className="animate-pulse" style={{ animationDelay: '1.5s' }} />
+            </svg>
+
+            <div className="grid grid-cols-2 gap-8 relative z-10">
+              {logos.map((logo, idx) => (
+                <div 
+                  key={idx} 
+                  className="aspect-square bg-white rounded-2xl flex items-center justify-center p-6 lg:p-8 shadow-[0_0_20px_rgba(59,130,246,0.15)]"
+                >
+                  <div className={`relative w-full h-full ${logo.name === "Lagos" ? "scale-65" : ""}`}>
+                    <Image 
+                      src={logo.src} 
+                      alt={`${logo.name} Logo`} 
+                      fill
+                      className="object-contain"
+                    />
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
 
-          {/* Interactive Node Map Placeholder - Using a stylish CSS grid representation */}
-          <div className="relative w-full aspect-square max-w-[600px] mx-auto lg:ml-auto">
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-900/40 to-transparent border border-blue-500/20 rounded-3xl backdrop-blur-sm flex items-center justify-center overflow-hidden">
-              <div className="relative w-full h-full opacity-80">
-                {/* Connecting SVG Lines */}
-                <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ filter: "drop-shadow(0 0 8px rgba(59, 130, 246, 0.5))" }}>
-                  <path d="M 20% 70% L 25% 65% L 45% 50% L 55% 20%" fill="none" stroke="rgba(59, 130, 246, 0.4)" strokeWidth="2" strokeDasharray="6 6" className="animate-pulse" />
-                  <path d="M 45% 50% L 70% 35%" fill="none" stroke="rgba(59, 130, 246, 0.4)" strokeWidth="2" strokeDasharray="6 6" className="animate-pulse" style={{ animationDelay: '1s' }} />
-                </svg>
+          {/* Right Column: Text Box */}
+          <div className="bg-blue-900/20 border border-blue-500/20 backdrop-blur-md rounded-[2rem] p-8 sm:p-12 flex flex-col justify-center">
+            <h3 className="text-2xl font-display font-semibold text-white mb-6">
+              Impacting lives across Nigeria.
+            </h3>
+            <p className="text-gray-300 text-lg leading-relaxed mb-6">
+              With our headquarters in Lagos and regional offices spanning Abuja, Kano, and Oyo State, our reach is genuinely national. 
+            </p>
+            <p className="text-gray-300 text-lg leading-relaxed mb-10">
+              We have partnered with state governments, trained thousands of artisans, and impacted over <strong className="text-white font-bold">300,000+ lives</strong> through our grassroots empowerment programmes across 5+ states. Like the <a href="https://oyostatebusinessinsurance.com.ng/index.html" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline font-medium transition-colors duration-300">Isedotun</a> Initiative in Oyo State
+            </p>
 
-                {/* Nodes */}
-                {locations.map((loc, i) => (
-                  <div 
-                    key={i} 
-                    className="absolute transform -translate-x-1/2 -translate-y-1/2 group cursor-pointer"
-                    style={{ top: loc.top, left: loc.left }}
-                  >
-                    <div className="relative flex items-center justify-center">
-                      <div className="absolute w-12 h-12 bg-blue-500/20 rounded-full animate-ping" />
-                      <div className="w-4 h-4 bg-blue-400 rounded-full shadow-[0_0_15px_rgba(59,130,246,1)] z-10" />
-                    </div>
-                    
-                    {/* Tooltip */}
-                    <div className="absolute top-8 left-1/2 -translate-x-1/2 bg-white text-navy-900 px-4 py-2 rounded-xl shadow-xl opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none whitespace-nowrap z-20">
-                      <div className="font-bold text-sm">{loc.name}</div>
-                      <div className="text-xs text-gray-500">{loc.type}</div>
-                    </div>
-                  </div>
-                ))}
+            <div className="grid grid-cols-2 gap-8 mt-auto pt-8 border-t border-white/10">
+              <div>
+                <div className="text-4xl font-display font-bold text-blue-400 mb-2">300k+</div>
+                <div className="text-gray-400 font-medium">Lives Impacted</div>
+              </div>
+              <div>
+                <div className="text-4xl font-display font-bold text-blue-400 mb-2">5+</div>
+                <div className="text-gray-400 font-medium">States Activated</div>
               </div>
             </div>
           </div>

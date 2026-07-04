@@ -18,11 +18,11 @@ const getAnchorStyle = (id: string): AnchorStyle => ({
 });
 
 const MARKERS: GlobeMarker[] = [
-  { id: 'kano', name: 'Kano', description: 'West Coast HQ', location: [37.7749, -122.4194], size: 0.05 },
-  { id: 'bauchi', name: 'Bauchi', description: 'EMEA Office', location: [51.5074, -0.1278], size: 0.05 },
-  { id: 'oyo', name: 'Oyo', description: 'APAC Hub', location: [35.6762, 139.6503], size: 0.05 },
-  { id: 'lagos', name: 'Lagos', description: 'Oceania Office', location: [-33.8688, 151.2093], size: 0.05 },
-  { id: 'saopaulo', name: 'Abuja', description: 'LATAM Hub', location: [-23.5505, -46.6333], size: 0.05 },
+  { id: 'kano', name: 'Kano', description: 'MSME Develepment Initiative', location: [37.7749, -122.4194], size: 0.05 },
+  { id: 'bauchi', name: 'Bauchi', description: 'NATCO', location: [51.5074, -0.1278], size: 0.05 },
+  { id: 'oyo', name: 'Oyo', description: 'NATCO, Insurance', location: [35.6762, 139.6503], size: 0.05 },
+  { id: 'lagos', name: 'Lagos', description: 'NATCO', location: [-33.8688, 151.2093], size: 0.05 },
+  { id: 'abuja', name: 'Abuja', description: 'SafeHire', location: [-23.5505, -46.6333], size: 0.05 },
   // { id: 'capetown', name: 'Cape Town', description: 'Africa Office', location: [-33.9249, 18.4241], size: 0.05 },
 ];
 

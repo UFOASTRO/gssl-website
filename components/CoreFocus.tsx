@@ -34,15 +34,23 @@ export default function CoreFocus() {
              <p className="text-gray-700 text-lg sm:text-xl leading-relaxed mb-10">
               From fieldwork to strategy, we help clients move from idea to impact. GSSL focuses on the pillars that drive the Nigerian economy forward.
             </p>
-            <div className="flex flex-col gap-6">
+            <div className="flex flex-col gap-5">
               {focusAreas.map((area, idx) => (
-                <div key={idx} className="flex flex-col">
-                  <h3 className="text-xl font-display font-semibold text-navy-900 mb-2">
-                    {area.number}. {area.title}
-                  </h3>
-                  <p className="text-gray-600 leading-relaxed">
-                    {area.description}
-                  </p>
+                <div 
+                  key={idx} 
+                  className="group flex flex-col sm:flex-row items-start gap-5 p-6 rounded-2xl border border-white/60 bg-white hover:shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:border-white transition-all duration-300"
+                >
+                  <div className="flex-shrink-0 flex items-center justify-center w-12 h-12 rounded-xl bg-blue-50 text-blue-600 font-display font-bold text-lg group-hover:bg-blue-600 group-hover:text-white transition-colors duration-300">
+                    {area.number}
+                  </div>
+                  <div className="flex flex-col">
+                    <h3 className="text-xl font-display font-semibold text-navy-900 mb-2">
+                      {area.title}
+                    </h3>
+                    <p className="text-gray-600 leading-relaxed text-[15px]">
+                      {area.description}
+                    </p>
+                  </div>
                 </div>
               ))}
             </div>
@@ -60,11 +68,11 @@ export default function CoreFocus() {
           {/* Right Column: Images */}
           <div className="relative w-full aspect-square lg:aspect-auto lg:h-full min-h-[500px] lg:min-h-[700px]">
              {/* Back Image */}
-             <div className="absolute top-0 left-0 w-[75%] h-[80%] rounded-[2rem] overflow-hidden shadow-sm bg-gray-200">
+             <div className="absolute top-0 left-20 w-[80%] h-[90%] rounded-[2rem] overflow-hidden shadow-sm bg-gray-200">
                 <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=1200&auto=format&fit=crop" alt="Business Strategy" className="w-full h-full object-cover" />
              </div>
              {/* Front Image */}
-             <div className="absolute top-20 right-0 w-[55%] h-[60%] rounded-[2rem] overflow-hidden shadow-2xl border-8 border-[#f8f9fa] z-10 bg-gray-200">
+             <div className="absolute -top-20 -right-20 w-[55%] h-[60%] rounded-[2rem] overflow-hidden shadow-2xl z-10 bg-gray-200">
                 <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=800&auto=format&fit=crop" alt="Collaboration" className="w-full h-full object-cover" />
              </div>
           </div>

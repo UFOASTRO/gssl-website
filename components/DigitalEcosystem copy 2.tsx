@@ -2,7 +2,7 @@
 
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
-import { ArrowUpRight, ExternalLink } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 
 // --- Utility Functions ---
 let instanceCounter = 0;
@@ -60,8 +60,8 @@ function HoverBentoGrid({
   rowHeight = 260, // Smaller row height so it easily fits in a viewport
   mobileRowHeight = 280,
   mobileBreakpoint = 768,
-  expandX = 1, // Disabled expansion
-  expandY = 1,  // Disabled expansion
+  expandX = 1.15, // Subtle expansion width
+  expandY = 1.13,  // Subtle expansion height
   duration = 600, // Premium slow and smooth transition
   easing = "cubic-bezier(0.25, 0.8, 0.25, 1)", // Gracious smooth easing
 }: any) {
@@ -168,10 +168,6 @@ function Tile({ tile, isActive, onEnter, onLeave, onToggle }: any) {
       onClick={handleClick}
       onKeyDown={handleKeyDown}
     >
-      <div className="hbg-link-icon absolute top-4 right-4 z-20 bg-white/20 backdrop-blur-md rounded-full p-2.5 text-white border border-white/10 shadow-sm transition-all duration-300 hover:bg-white/45 hover:scale-110">
-        <ExternalLink className="w-4 h-4" />
-      </div>
-
       <div className="hbg-media">
         {base && (
           <Image
@@ -219,16 +215,6 @@ function css(uid: string) {
   // border: 1px solid rgba(0,0,0,0.06);
 }
 
-.hbg-${uid} .hbg-link-icon {
-  opacity: 0;
-  transform: scale(0.9);
-  transition: opacity var(--hbg-duration) var(--hbg-ease), transform var(--hbg-duration) var(--hbg-ease);
-}
-.hbg-${uid} .hbg-tile.is-active .hbg-link-icon {
-  opacity: 1;
-  transform: scale(1);
-}
-
 .hbg-${uid} .hbg-media {
   position: absolute;
   inset: 0;
@@ -251,8 +237,12 @@ function css(uid: string) {
 .hbg-${uid} .hbg-scrim {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 60%, rgba(0,0,0,0.1) 100%);
-  opacity: 0.85;
+  background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0) 100%);
+  opacity: 0.7;
+  transition: opacity var(--hbg-duration) var(--hbg-ease);
+}
+.hbg-${uid} .hbg-tile.is-active .hbg-scrim { 
+  opacity: 0.95; 
 }
 
 .hbg-${uid} .hbg-content {
@@ -272,6 +262,10 @@ function css(uid: string) {
   font-size: clamp(18px, 2vw + 8px, 22px);
   font-weight: 600;
   color: #fff;
+  transition: color var(--hbg-duration) var(--hbg-ease);
+}
+.hbg-${uid} .hbg-tile.is-active .hbg-title {
+  color: #60a5fa;
 }
 
 .hbg-${uid} .hbg-reveal {
@@ -316,7 +310,7 @@ export default function DigitalEcosystem() {
   const platforms = [
     {
       id: "naija-quick-fix",
-      name: "Naijaquickfix",
+      name: "Artisans' Verification Portal",
       description: "Connecting verified Nigerian artisans and technicians with clients.",
       url: "https://naijaquickfix.com.ng",
       image: "/projects-completed/naija-quick-fix.png",
