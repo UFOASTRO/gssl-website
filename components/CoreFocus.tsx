@@ -19,7 +19,7 @@ export default function CoreFocus() {
       number: "03",
     }
   ];
-
+//check am using a diff image
   return (
     <section id="core-focus" className="w-full bg-[#f8f9fa] py-24 sm:py-32">
       <div className="max-w-[1320px] mx-auto px-6 sm:px-8 lg:px-12">
