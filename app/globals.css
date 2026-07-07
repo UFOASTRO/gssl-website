@@ -1,5 +1,5 @@
-@import url('https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500,300,400&display=swap');
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 @theme {
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
@@ -81,12 +81,11 @@ body {
    faces the camera and 0 when it has rotated to the back of the globe.
    Generate one rule per marker id (map over MARKERS) so labels fade out
    instead of floating over the globe when hidden. */
-.globe-label[data-marker-id='sf']       { opacity: var(--cobe-visible-sf, 0); }
-.globe-label[data-marker-id='london']   { opacity: var(--cobe-visible-london, 0); }
-.globe-label[data-marker-id='tokyo']    { opacity: var(--cobe-visible-tokyo, 0); }
-.globe-label[data-marker-id='sydney']   { opacity: var(--cobe-visible-sydney, 0); }
-.globe-label[data-marker-id='saopaulo'] { opacity: var(--cobe-visible-saopaulo, 0); }
-.globe-label[data-marker-id='capetown'] { opacity: var(--cobe-visible-capetown, 0); }
+.globe-label[data-marker-id='kano']   { opacity: var(--cobe-visible-kano, 0); }
+.globe-label[data-marker-id='bauchi'] { opacity: var(--cobe-visible-bauchi, 0); }
+.globe-label[data-marker-id='oyo']    { opacity: var(--cobe-visible-oyo, 0); }
+.globe-label[data-marker-id='lagos']  { opacity: var(--cobe-visible-lagos, 0); }
+.globe-label[data-marker-id='abuja']  { opacity: var(--cobe-visible-abuja, 0); }
 
 .globe-label.expanded {
   transform: scale(1.08);
@@ -237,4 +236,119 @@ opacity:.28;
 
 }
 
+}
+
+/* Scoped styles for HoverBentoGrid in DigitalEcosystem.tsx */
+.hbg-grid {
+  position: relative;
+  display: grid;
+  width: 100%;
+  transition:
+    grid-template-columns var(--hbg-duration, 600ms) var(--hbg-ease, cubic-bezier(0.25, 0.8, 0.25, 1)),
+    grid-template-rows var(--hbg-duration, 600ms) var(--hbg-ease, cubic-bezier(0.25, 0.8, 0.25, 1)),
+    height var(--hbg-duration, 600ms) var(--hbg-ease, cubic-bezier(0.25, 0.8, 0.25, 1));
+}
+
+.hbg-tile {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--hbg-radius, 24px);
+  cursor: pointer;
+  isolation: isolate;
+  background: #111;
+}
+
+.hbg-link-icon {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity var(--hbg-duration, 600ms) var(--hbg-ease, cubic-bezier(0.25, 0.8, 0.25, 1)), transform var(--hbg-duration, 600ms) var(--hbg-ease, cubic-bezier(0.25, 0.8, 0.25, 1));
+}
+
+.hbg-tile.is-active .hbg-link-icon {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.hbg-media {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: inherit;
+}
+
+.hbg-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform calc(var(--hbg-duration, 600ms) * 1.5) var(--hbg-ease, cubic-bezier(0.25, 0.8, 0.25, 1));
+}
+
+.hbg-tile.is-active .hbg-img.base { 
+  transform: scale(1.05); 
+}
+
+.hbg-scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 60%, rgba(0,0,0,0.1) 100%);
+  opacity: 0.85;
+}
+
+.hbg-content {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: clamp(20px, 4%, 24px);
+  color: #fff;
+}
+
+.hbg-title {
+  margin: 0;
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-size: clamp(18px, 2vw + 8px, 22px);
+  font-weight: 600;
+  color: #fff;
+}
+
+.hbg-reveal {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows var(--hbg-duration, 600ms) var(--hbg-ease, cubic-bezier(0.25, 0.8, 0.25, 1));
+}
+
+.hbg-tile.is-active .hbg-reveal { 
+  grid-template-rows: 1fr;
+  margin-top: 8px;
+}
+
+.hbg-reveal-inner {
+  overflow: hidden;
+  min-height: 0;
+  opacity: 0;
+  transform: translateY(5px);
+  transition: opacity calc(var(--hbg-duration, 600ms) * 0.8) var(--hbg-ease, cubic-bezier(0.25, 0.8, 0.25, 1)),
+    transform calc(var(--hbg-duration, 600ms) * 0.8) var(--hbg-ease, cubic-bezier(0.25, 0.8, 0.25, 1));
+}
+
+.hbg-tile.is-active .hbg-reveal-inner {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: calc(var(--hbg-duration, 600ms) * 0.2);
+}
+
+.hbg-desc {
+  margin: 0;
+  font-family: var(--font-sans), system-ui, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  color: rgba(255,255,255,0.9);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hbg-grid, .hbg-grid * { transition-duration: 100ms !important; }
 }

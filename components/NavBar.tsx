@@ -20,7 +20,7 @@ export default function NavBar() {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
     };
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
     
     const updateTime = () => {
@@ -35,7 +35,7 @@ export default function NavBar() {
     };
 
     updateTime();
-    const interval = setInterval(updateTime, 1000);
+    const interval = setInterval(updateTime, 30000);
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
@@ -58,9 +58,9 @@ export default function NavBar() {
 
   return (
     <>
-      <div className={`navbar-anim fixed top-0 left-0 right-0 z-50 flex justify-center transition-all duration-500 ease-in-out ${scrolled ? "pt-4 px-4 sm:px-6" : "pt-0 px-0"}`}>
+      <div className={`navbar-anim fixed top-0 left-0 right-0 z-50 flex justify-center transition-[padding] duration-500 ease-in-out ${scrolled ? "pt-4 px-4 sm:px-6" : "pt-0 px-0"}`}>
         <nav
-          className={`w-full max-w-[1320px] mx-auto transition-all duration-500 ease-in-out flex items-center justify-between ${
+          className={`w-full max-w-[1320px] mx-auto transition-[background-color,backdrop-filter,box-shadow,border-radius,padding] duration-500 ease-in-out flex items-center justify-between ${
             scrolled
               ? "bg-white/95 backdrop-blur-md rounded-full py-2 px-3 sm:px-4 shadow-sm"
               : "bg-transparent py-5 px-6 sm:px-8"
@@ -68,7 +68,11 @@ export default function NavBar() {
         >
           {/* LEFT: Logo & Links */}
           <div className="flex items-center gap-8 pl-2 sm:pl-4">
-            <a href="#" className={`relative flex-shrink-0 block transition-all duration-500 ${scrolled ? "h-8 w-24" : "h-10 w-28"}`} onClick={(e) => { e.preventDefault(); window.scrollTo({top: 0, behavior: 'smooth'}); }}>
+            <a 
+              href="#" 
+              className={`relative flex-shrink-0 block transition-transform duration-500 h-10 w-28 ${scrolled ? "scale-90 origin-left" : "scale-100 origin-left"}`} 
+              onClick={(e) => { e.preventDefault(); window.scrollTo({top: 0, behavior: 'smooth'}); }}
+            >
               <Image 
                 src="/GSSL logo.png" 
                 alt="GSSL Logo" 
@@ -100,7 +104,7 @@ export default function NavBar() {
             <a
               href="#contact"
               onClick={(e) => handleScrollTo(e, "#contact")}
-              className={`font-medium bg-navy-900 text-white rounded-full hover:bg-navy-800 transition-all duration-300 shadow-sm ${scrolled ? "px-5 py-2 text-[14px]" : "px-6 py-2.5 text-[15px]"}`}
+              className={`font-medium bg-navy-900 text-white rounded-full hover:bg-navy-800 transition-colors duration-300 shadow-sm ${scrolled ? "px-5 py-2 text-[14px]" : "px-6 py-2.5 text-[15px]"}`}
             >
               Contact Us
             </a>

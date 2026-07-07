@@ -18,6 +18,37 @@ type Event = {
   images: string[];
 };
 
+function NewsletterSkeleton() {
+  return (
+    <section className="w-full bg-[#f8f9fa] py-24 sm:py-32">
+      <div className="max-w-[1320px] mx-auto px-6 sm:px-8 lg:px-12">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 sm:mb-20 gap-8">
+          <div className="max-w-2xl w-full">
+            <div className="h-10 bg-gray-200 rounded-lg w-3/4 mb-4 animate-pulse"></div>
+            <div className="h-6 bg-gray-200 rounded-lg w-full mb-2 animate-pulse"></div>
+            <div className="h-6 bg-gray-200 rounded-lg w-2/3 animate-pulse"></div>
+          </div>
+          <div className="h-6 bg-gray-200 rounded-lg w-24 hidden md:block animate-pulse"></div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {[1, 2, 3].map((i) => (
+            <div key={i} className="bg-white rounded-[2rem] overflow-hidden border border-gray-200/60 p-0 shadow-[0_8px_30px_rgba(0,0,0,0.02)] flex flex-col h-full">
+              <div className="w-full h-64 bg-gray-200 animate-pulse relative"></div>
+              <div className="p-8 flex-grow">
+                <div className="h-8 bg-gray-200 rounded-lg w-5/6 mb-4 animate-pulse"></div>
+                <div className="h-5 bg-gray-200 rounded-lg w-full mb-2 animate-pulse"></div>
+                <div className="h-5 bg-gray-200 rounded-lg w-4/5 mb-6 animate-pulse"></div>
+                <div className="h-6 bg-gray-200 rounded-lg w-1/3 animate-pulse"></div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export default function NewsletterSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const [events, setEvents] = useState<Event[]>([]);
@@ -45,19 +76,19 @@ export default function NewsletterSection() {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: "top 80%",
+          start: "top 95%",
           toggleActions: "play none none none"
         }
       });
 
       tl.fromTo(".news-header", 
-        { y: 50, opacity: 0 }, 
-        { y: 0, opacity: 1, duration: 1.2, ease: "power4.out" }
+        { y: 35, opacity: 0 }, 
+        { y: 0, opacity: 1, duration: 0.8, ease: "power4.out" }
       )
       .fromTo(".news-card", 
-        { y: 50, opacity: 0 }, 
-        { y: 0, opacity: 1, stagger: 0.15, duration: 1, ease: "power3.out" }, 
-        "-=0.8"
+        { y: 35, opacity: 0 }, 
+        { y: 0, opacity: 1, stagger: 0.1, duration: 0.6, ease: "power3.out" }, 
+        "-=0.5"
       );
     }, sectionRef);
 
@@ -65,11 +96,7 @@ export default function NewsletterSection() {
   }, [loading, events]);
 
   if (loading) {
-    return (
-      <section className="w-full bg-[#f8f9fa] py-24 sm:py-32 flex justify-center">
-        <div className="w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
-      </section>
-    );
+    return <NewsletterSkeleton />;
   }
 
   if (events.length === 0) {
@@ -77,7 +104,7 @@ export default function NewsletterSection() {
   }
 
   return (
-    <section ref={sectionRef} className="w-full bg-[#f8f9fa] py-24 sm:py-32">
+    <section ref={sectionRef} id="news" className="w-full bg-[#f8f9fa] py-24 sm:py-32">
       <div className="max-w-[1320px] mx-auto px-6 sm:px-8 lg:px-12">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 sm:mb-20 gap-8">
           <div className="max-w-2xl news-header">

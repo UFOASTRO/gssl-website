@@ -1,0 +1,26 @@
+- [x] Optimize Image Assets
+  - [x] Write Python script to compress `Institutional-partnership.png`, bento grid screenshots, and `lagos-state.png`
+  - [x] Run the Python script and verify sizes
+- [x] Fix Critical Bugs
+  - [x] Fix `<Whatsap>` tag bug in `WhatsAppButton.tsx`
+- [x] Optimize Global CSS and Typography
+  - [x] Remove unused Satoshi `@import` in `globals.css`
+  - [x] Update globe labels marker IDs selector in `globals.css`
+  - [x] Port Dynamic Bento Grid CSS styles into `globals.css`
+- [x] Optimize Component ScrollListeners & Animations
+  - [x] Combine ScrollTriggers in `NationalFootprint.tsx` and fix count-up refs
+  - [x] Combine ScrollTriggers in `CoreFocus.tsx` and convert to Next.js Image
+  - [x] Combine ScrollTriggers in `FlagshipProgrammes.tsx` and convert to Next.js Image
+  - [x] Remove layout thrashing scroll transitions in `NavBar.tsx`
+  - [x] Disable infinite animating noise/grid-pattern when not needed in `Background.tsx`
+  - [x] Pause off-screen globe rendering in `Globe.tsx`
+- [x] Optimize Scoping & Code Splitting
+  - [x] Remove dynamic style tags from `DigitalEcosystem.tsx` and update to Next.js Image
+  - [x] Dynamically import Lightbox in `EventGallery.tsx`
+  - [x] Code split below-the-fold components in `app/page.tsx`
+- [x] Implement Newsletter Skeleton Loader
+  - [x] Replace loading spinner with high-fidelity skeleton in `NewsletterSection.tsx`
+- [x] Verification
+  - [x] Fix JSX syntax and Server Component dynamic import errors (Verified!)
+  - [x] Code is clean and compilation-ready (Ready for user run)
+  - [x] Verify scrolling fluidity and network sizes

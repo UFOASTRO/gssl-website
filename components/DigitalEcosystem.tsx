@@ -9,16 +9,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 // --- Utility Functions ---
-let instanceCounter = 0;
-function useInstanceId() {
-  const ref = useRef<string | null>(null);
-  if (ref.current === null) {
-    instanceCounter += 1;
-    ref.current = `hbg-${instanceCounter}-${Math.random().toString(36).slice(2, 7)}`;
-  }
-  return ref.current;
-}
-
 function normalizeImage(img: any) {
   if (!img) return null;
   return typeof img === "string" ? { src: img } : img;
@@ -69,7 +59,6 @@ function HoverBentoGrid({
   duration = 600, // Premium slow and smooth transition
   easing = "cubic-bezier(0.25, 0.8, 0.25, 1)", // Gracious smooth easing
 }: any) {
-  const uid = useInstanceId();
   const isMobile = useMediaQuery(`(max-width: ${mobileBreakpoint}px)`);
 
   const [hoverIndex, setHoverIndex] = useState<number | null>(null);
@@ -101,15 +90,16 @@ function HoverBentoGrid({
 
   return (
     <div className={`hbg-root w-full`} style={rootVars}>
-      <style>{css(uid)}</style>
       <div
-        className={`hbg-grid hbg-${uid}`}
+        className="hbg-grid"
         role="group"
         style={{
+          display: "grid",
           gridTemplateColumns: colTemplate,
           gridTemplateRows: rowTemplate,
           gap: `${gap}px`,
           height: `${gridHeight}px`,
+          transition: `grid-template-columns ${duration}ms ${easing}, grid-template-rows ${duration}ms ${easing}, height ${duration}ms ${easing}`
         }}
       >
         {tiles.map((tile: any, i: number) => (
@@ -127,6 +117,7 @@ function HoverBentoGrid({
   );
 }
 
+// --- Tile Component ---
 function Tile({ tile, isActive, onEnter, onLeave, onToggle }: any) {
   const coarsePointer = useMediaQuery("(hover: none), (pointer: coarse)");
   const base = normalizeImage(tile.image);
@@ -162,7 +153,15 @@ function Tile({ tile, isActive, onEnter, onLeave, onToggle }: any) {
       href={tile.url}
       target="_blank"
       rel="noopener noreferrer"
-      className={[`hbg-tile`, isActive ? "is-active" : ""].join(" ")}
+      className={`hbg-tile ${isActive ? "is-active" : ""}`}
+      style={{
+        position: "relative",
+        overflow: "hidden",
+        borderRadius: "var(--hbg-radius)",
+        cursor: "pointer",
+        isolation: "isolate",
+        background: "#111"
+      }}
       tabIndex={0}
       aria-expanded={isActive}
       aria-label={[tile.name, tile.description].filter(Boolean).join(". ")}
@@ -176,143 +175,34 @@ function Tile({ tile, isActive, onEnter, onLeave, onToggle }: any) {
         <ExternalLink className="w-4 h-4" />
       </div>
 
-      <div className="hbg-media">
+      <div className="hbg-media" style={{ position: "absolute", inset: 0, overflow: "hidden", borderRadius: "inherit" }}>
         {base && (
           <Image
             className="hbg-img base"
             src={base.src}
             alt={base.alt ?? tile.name}
             fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            style={{
+              objectFit: "cover",
+              transition: "transform calc(var(--hbg-duration) * 1.5) var(--hbg-ease)",
+              transform: isActive ? "scale(1.05)" : "scale(1)"
+            }}
           />
         )}
-        <div className="hbg-scrim" />
+        <div className="hbg-scrim" style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 60%, rgba(0,0,0,0.1) 100%)", opacity: 0.85 }} />
       </div>
 
-      <div className="hbg-content">
-        <h3 className="hbg-title">{tile.name}</h3>
-        <div className="hbg-reveal">
-          <div className="hbg-reveal-inner">
-            {tile.description && <p className="hbg-desc">{tile.description}</p>}
+      <div className="hbg-content" style={{ position: "relative", zIndex: 2, height: "100%", display: "flex", flexDirection: "column", justifyContent: "flex-end", padding: "24px", color: "#fff" }}>
+        <h3 className="hbg-title" style={{ margin: 0, fontSize: "22px", fontWeight: 600 }}>{tile.name}</h3>
+        <div className="hbg-reveal" style={{ display: "grid", gridTemplateRows: isActive ? "1fr" : "0fr", transition: "grid-template-rows var(--hbg-duration) var(--hbg-ease)", marginTop: isActive ? "8px" : "0px" }}>
+          <div className="hbg-reveal-inner" style={{ overflow: "hidden", opacity: isActive ? 1 : 0, transition: "opacity calc(var(--hbg-duration) * 0.8) var(--hbg-ease)" }}>
+            {tile.description && <p className="hbg-desc" style={{ margin: 0, fontSize: "14px", color: "rgba(255,255,255,0.9)" }}>{tile.description}</p>}
           </div>
         </div>
       </div>
     </a>
   );
-}
-
-function css(uid: string) {
-  return `
-.hbg-root { width: 100%; }
-.hbg-grid.hbg-${uid} {
-  position: relative;
-  display: grid;
-  width: 100%;
-  transition:
-    grid-template-columns var(--hbg-duration) var(--hbg-ease),
-    grid-template-rows var(--hbg-duration) var(--hbg-ease),
-    height var(--hbg-duration) var(--hbg-ease);
-}
-
-.hbg-${uid} .hbg-tile {
-  position: relative;
-  overflow: hidden;
-  border-radius: var(--hbg-radius);
-  cursor: pointer;
-  isolation: isolate;
-  background: #111;
-  // border: 1px solid rgba(0,0,0,0.06);
-}
-
-.hbg-${uid} .hbg-link-icon {
-  opacity: 0;
-  transform: scale(0.9);
-  transition: opacity var(--hbg-duration) var(--hbg-ease), transform var(--hbg-duration) var(--hbg-ease);
-}
-.hbg-${uid} .hbg-tile.is-active .hbg-link-icon {
-  opacity: 1;
-  transform: scale(1);
-}
-
-.hbg-${uid} .hbg-media {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-  border-radius: inherit;
-}
-
-.hbg-${uid} .hbg-img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform calc(var(--hbg-duration) * 1.5) var(--hbg-ease);
-}
-.hbg-${uid} .hbg-tile.is-active .hbg-img.base { 
-  transform: scale(1.05); 
-}
-
-.hbg-${uid} .hbg-scrim {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 60%, rgba(0,0,0,0.1) 100%);
-  opacity: 0.85;
-}
-
-.hbg-${uid} .hbg-content {
-  position: relative;
-  z-index: 2;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding: clamp(20px, 4%, 24px);
-  color: #fff;
-}
-
-.hbg-${uid} .hbg-title {
-  margin: 0;
-  font-family: var(--font-display), system-ui, sans-serif;
-  font-size: clamp(18px, 2vw + 8px, 22px);
-  font-weight: 600;
-  color: #fff;
-}
-
-.hbg-${uid} .hbg-reveal {
-  display: grid;
-  grid-template-rows: 0fr;
-  transition: grid-template-rows var(--hbg-duration) var(--hbg-ease);
-}
-.hbg-${uid} .hbg-tile.is-active .hbg-reveal { 
-  grid-template-rows: 1fr;
-  margin-top: 8px;
-}
-.hbg-${uid} .hbg-reveal-inner {
-  overflow: hidden;
-  min-height: 0;
-  opacity: 0;
-  transform: translateY(5px);
-  transition: opacity calc(var(--hbg-duration) * 0.8) var(--hbg-ease),
-    transform calc(var(--hbg-duration) * 0.8) var(--hbg-ease);
-}
-.hbg-${uid} .hbg-tile.is-active .hbg-reveal-inner {
-  opacity: 1;
-  transform: translateY(0);
-  transition-delay: calc(var(--hbg-duration) * 0.2);
-}
-
-.hbg-${uid} .hbg-desc {
-  margin: 0;
-  font-family: var(--font-sans), system-ui, sans-serif;
-  font-size: 14px;
-  line-height: 1.5;
-  color: rgba(255,255,255,0.9);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .hbg-${uid}, .hbg-${uid} * { transition-duration: 100ms !important; }
-}
-`;
 }
 
 // --- Main Section Component ---
@@ -399,7 +289,8 @@ export default function DigitalEcosystem() {
   ];
 
   return (
-    <section ref={sectionRef} id="programmes" className="w-full bg-white py-16 sm:py-24">
+    <section ref={sectionRef} id="programmes" className="w-full bg-white py-16 sm:py-24 relative">
+      <div id="resources" className="absolute top-0 left-0 w-0 h-0 pointer-events-none" />
       <div className="max-w-[1320px] mx-auto px-6 sm:px-8 lg:px-12">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 sm:mb-16 gap-8">
           <div className="max-w-2xl">

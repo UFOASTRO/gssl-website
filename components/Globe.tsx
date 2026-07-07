@@ -125,6 +125,7 @@ export default function Globe() {
     let animationFrame = 0;
     let destroyed = false;
     let visible = true;
+    let isLooping = false;
     let globe: ReturnType<typeof createGlobe> | null = null;
 
     const measure = () => {
@@ -144,18 +145,17 @@ export default function Globe() {
     });
     resizeObserver.observe(container);
 
-    const intersectionObserver = new IntersectionObserver(([entry]) => {
-      visible = entry.isIntersecting;
-    });
-    intersectionObserver.observe(container);
-
     const render = () => {
-      if (!globe || destroyed) return;
+      if (!globe || destroyed || !visible) {
+        isLooping = false;
+        return;
+      }
+      isLooping = true;
 
       const nextSize = sizeRef.current.width > 0 ? sizeRef.current : measure();
       sizeRef.current = nextSize;
 
-      if (visible && dragRef.current === null) {
+      if (dragRef.current === null) {
         if (!reducedMotion) phiRef.current += IDLE_ROTATION_SPEED;
         phiRef.current += momentumVelocityRef.current.x;
         thetaRef.current = clamp(
@@ -189,6 +189,15 @@ export default function Globe() {
 
       animationFrame = requestAnimationFrame(render);
     };
+
+    const intersectionObserver = new IntersectionObserver(([entry]) => {
+      const wasVisible = visible;
+      visible = entry.isIntersecting;
+      if (visible && !wasVisible && !isLooping) {
+        render();
+      }
+    });
+    intersectionObserver.observe(container);
 
     const initialize = () => {
       sizeRef.current = measure();

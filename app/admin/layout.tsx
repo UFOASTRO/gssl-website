@@ -42,7 +42,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     <div className="min-h-screen bg-gray-50 font-sans">
       {pathname !== '/admin/login' && (
         <header className="bg-white border-b border-gray-200 px-6 py-4 flex justify-between items-center z-50 relative">
-          <h1 className="font-display font-semibold text-xl text-navy-900">NATCO Admin</h1>
+          <h1 className="font-display font-semibold text-xl text-navy-900">GGSL Admin</h1>
           <button
             onClick={() => supabase.auth.signOut()}
             className="text-sm font-medium text-gray-600 hover:text-red-600 transition-colors"

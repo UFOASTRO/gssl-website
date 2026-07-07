@@ -15,24 +15,24 @@ export default function ConsultingSolutions() {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: "top 80%",
+          start: "top 95%",
           toggleActions: "play none none none"
         }
       });
 
       tl.fromTo(".solutions-header", 
-        { y: 50, opacity: 0 }, 
-        { y: 0, opacity: 1, duration: 1.2, ease: "power4.out" }
+        { y: 30, opacity: 0 }, 
+        { y: 0, opacity: 1, duration: 0.8, ease: "power4.out" }
       )
       .fromTo(".solutions-desc", 
-        { y: 30, opacity: 0 }, 
-        { y: 0, opacity: 1, duration: 1, ease: "power3.out" }, 
-        "-=0.9"
+        { y: 20, opacity: 0 }, 
+        { y: 0, opacity: 1, duration: 0.6, ease: "power3.out" }, 
+        "-=0.6"
       )
       .fromTo(".solutions-card", 
-        { y: 50, opacity: 0 }, 
-        { y: 0, opacity: 1, stagger: 0.15, duration: 1, ease: "power3.out" }, 
-        "-=0.8"
+        { y: 25, opacity: 0 }, 
+        { y: 0, opacity: 1, stagger: 0.1, duration: 0.6, ease: "power3.out" }, 
+        "-=0.5"
       );
     }, sectionRef);
 
@@ -44,14 +44,14 @@ export default function ConsultingSolutions() {
       id: "business-transformation",
       title: "Business Transformation",
       icon: Lightbulb,
-      description: "We help organizations identify operational gaps and implement strategic restructuring to improve efficiency, agility, and overall performance. Our solutions are designed to modernize traditional processes and prepare businesses for scale.",
+      description: "We find what's slowing your business down and restructure your operations to improve performance. We modernize your processes so you are ready to grow.",
       features: ["Operational Audits", "Process Optimization", "Digital Transitioning", "Change Management"]
     },
     {
       id: "market-access",
       title: "Market Access & Finance",
       icon: Globe2,
-      description: "Navigating the complexities of securing funding and reaching new markets. We facilitate access to finance and strategic partnerships, enabling MSMEs and large enterprises alike to expand their reach and unlock new revenue streams.",
+      description: "We help you secure funding and reach new markets. By connecting you with the right financial partners, we make it easier for your business to expand and increase revenue.",
       features: ["Funding Facilitation", "Strategic Partnerships", "Market Entry Strategy", "Insurance Facilitation"]
     },
     {

@@ -21,18 +21,7 @@ export default function Background() {
             linear-gradient(90deg, rgba(15, 27, 51, 0.04) 1px, transparent 1px);
 
           background-size: 48px 48px;
-
-          animation: gridMove 25s linear infinite;
           mask-image: radial-gradient(circle at center, black, transparent 90%);
-        }
-
-        @keyframes gridMove {
-          from {
-            background-position: 0 0, 0 0;
-          }
-          to {
-            background-position: 48px 48px, 48px 48px;
-          }
         }
 
         .noise {
@@ -46,43 +35,11 @@ export default function Background() {
             140px 140px,
             120px 120px;
 
-          animation: noise 0.35s steps(3) infinite;
           mix-blend-mode: multiply;
-        }
-
-        @keyframes noise {
-          0% {
-            transform: translate(0, 0);
-          }
-          25% {
-            transform: translate(-2%, 1%);
-          }
-          50% {
-            transform: translate(2%, -1%);
-          }
-          75% {
-            transform: translate(-1%, 2%);
-          }
-          100% {
-            transform: translate(0, 0);
-          }
         }
 
         .animate-gradient {
           background-size: 200% 200%;
-          animation: gradientMove 15s ease infinite;
-        }
-
-        @keyframes gradientMove {
-          0% {
-            background-position: 0% 50%;
-          }
-          50% {
-            background-position: 100% 50%;
-          }
-          100% {
-            background-position: 0% 50%;
-          }
         }
       `}</style>
     </>

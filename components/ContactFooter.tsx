@@ -161,16 +161,16 @@ export default function ContactFooter() {
             
             <div className="footer-col flex flex-col gap-4">
               <h4 className="font-semibold mb-2">Company</h4>
-              <a href="#about" className="text-gray-400 hover:text-white transition-colors">About Us</a>
-              <a href="#programmes" className="text-gray-400 hover:text-white transition-colors">Our Programmes</a>
-              <a href="#solutions" className="text-gray-400 hover:text-white transition-colors">Solutions</a>
-              <a href="#contact" className="text-gray-400 hover:text-white transition-colors">Contact</a>
+              <a href="/#about" className="text-gray-400 hover:text-white transition-colors">About Us</a>
+              <a href="/#programmes" className="text-gray-400 hover:text-white transition-colors">Our Programmes</a>
+              <a href="/#solutions" className="text-gray-400 hover:text-white transition-colors">Solutions</a>
+              <a href="/#contact" className="text-gray-400 hover:text-white transition-colors">Contact</a>
             </div>
 
             <div className="footer-col flex flex-col gap-4">
               <h4 className="font-semibold mb-2">Legal</h4>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">Privacy Policy</a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">Terms of Service</a>
+              <a href="#" onClick={(e) => e.preventDefault()} className="text-gray-400 hover:text-white transition-colors">Privacy Policy</a>
+              <a href="#" onClick={(e) => e.preventDefault()} className="text-gray-400 hover:text-white transition-colors">Terms of Service</a>
             </div>
           </div>
 

@@ -17,39 +17,41 @@ export default function ExecutiveLeadership() {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: "top 80%",
+          start: "top 95%",
           toggleActions: "play none none none"
         }
       });
 
       tl.fromTo(".leader-badge",
-        { y: 30, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.8, ease: "power3.out" }
+        { y: 20, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.5, ease: "power3.out" }
       )
       .fromTo(".leader-header", 
-        { y: 40, opacity: 0 }, 
-        { y: 0, opacity: 1, duration: 1, ease: "power4.out" },
-        "-=0.6"
+        { y: 30, opacity: 0 }, 
+        { y: 0, opacity: 1, duration: 0.6, ease: "power4.out" },
+        "-=0.4"
       )
       .fromTo(".leader-desc", 
-        { y: 30, opacity: 0 }, 
-        { y: 0, opacity: 1, duration: 0.8, ease: "power3.out" }, 
-        "-=0.7"
+        { y: 20, opacity: 0 }, 
+        { y: 0, opacity: 1, duration: 0.5, ease: "power3.out" }, 
+        "-=0.4"
       )
       .fromTo(".leader-quote", 
-        { y: 25, opacity: 0 }, 
-        { y: 0, opacity: 1, duration: 0.8, ease: "power3.out" }, 
-        "-=0.6"
+        { y: 20, opacity: 0 }, 
+        { y: 0, opacity: 1, duration: 0.5, ease: "power3.out" }, 
+        "-=0.4"
       )
       .fromTo(".leader-stat-item", 
-        { y: 20, opacity: 0 }, 
-        { y: 0, opacity: 1, stagger: 0.1, duration: 0.8, ease: "power3.out" }, 
-        "-=0.5"
-      )
-      .fromTo(".leader-card", 
-        { y: 50, opacity: 0, scale: 0.98 }, 
-        { y: 0, opacity: 1, scale: 1, duration: 1.2, ease: "power3.out" }, 
-        "-=0.9"
+        { y: 15, opacity: 0 }, 
+        { y: 0, opacity: 1, stagger: 0.05, duration: 0.5, ease: "power3.out" }, 
+        "-=0.4"
+      );
+
+      // Animate the CEO profile card in parallel so it doesn't wait for the left column
+      tl.fromTo(".leader-card", 
+        { y: 30, opacity: 0, scale: 0.98 }, 
+        { y: 0, opacity: 1, scale: 1, duration: 0.7, ease: "power3.out" }, 
+        "0.15"
       );
 
       // Zooms image inside wrapper
@@ -57,11 +59,11 @@ export default function ExecutiveLeadership() {
         { scale: 1.1 }, 
         { 
           scale: 1, 
-          duration: 1.8, 
+          duration: 1.2, 
           ease: "power3.out",
           scrollTrigger: {
             trigger: sectionRef.current,
-            start: "top 75%",
+            start: "top 95%",
             toggleActions: "play none none none"
           }
         }
@@ -224,6 +226,7 @@ export default function ExecutiveLeadership() {
                     <span className="text-xs text-gray-400 font-medium">Global Sight Services Limited</span>
                     <a
                       href="#"
+                      onClick={(e) => e.preventDefault()}
                       className="w-9 h-9 rounded-full bg-gray-50 flex items-center justify-center text-gray-400 hover:text-blue-600 hover:bg-blue-50 transition-colors shadow-sm"
                       aria-label="CEO Website Link"
                     >

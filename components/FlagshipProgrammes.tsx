@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef } from "react";
 import { ArrowUpRight } from "lucide-react";
+import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -12,73 +13,61 @@ export default function FlagshipProgrammes() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Header Animation
-      const headerTl = gsap.timeline({
+      // Single timeline for the entire section
+      const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: "top 80%",
+          start: "top 95%",
           toggleActions: "play none none none"
         }
       });
 
-      headerTl.fromTo(".flagship-header", 
-        { y: 50, opacity: 0 }, 
-        { y: 0, opacity: 1, duration: 1.2, ease: "power4.out" }
+      tl.fromTo(".flagship-header", 
+        { y: 30, opacity: 0 }, 
+        { y: 0, opacity: 1, duration: 0.8, ease: "power4.out" }
       )
       .fromTo(".flagship-desc", 
-        { y: 30, opacity: 0 }, 
-        { y: 0, opacity: 1, duration: 1, ease: "power3.out" }, 
-        "-=0.9"
+        { y: 20, opacity: 0 }, 
+        { y: 0, opacity: 1, duration: 0.6, ease: "power3.out" }, 
+        "-=0.6"
       );
 
       // Cards Stagger Animation
-      gsap.fromTo(".flagship-card", 
-        { y: 60, opacity: 0, scale: 0.95 }, 
+      tl.fromTo(".flagship-card", 
+        { y: 40, opacity: 0, scale: 0.97 }, 
         { 
           y: 0, 
           opacity: 1, 
           scale: 1, 
-          stagger: 0.15, 
-          duration: 1.2, 
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: ".flagship-grid",
-            start: "top 75%",
-            toggleActions: "play none none none"
-          }
-        }
+          stagger: 0.1, 
+          duration: 0.6, 
+          ease: "power3.out"
+        },
+        "-=0.5"
       );
 
       // Image wrapper clip-path reveal
-      gsap.fromTo(".flagship-img-wrap", 
+      tl.fromTo(".flagship-img-wrap", 
         { clipPath: "inset(100% 0 0 0)" }, 
         { 
           clipPath: "inset(0% 0 0 0)", 
-          duration: 1.5, 
-          stagger: 0.15,
-          ease: "power4.inOut",
-          scrollTrigger: {
-            trigger: ".flagship-grid",
-            start: "top 75%",
-            toggleActions: "play none none none"
-          }
-        }
+          duration: 0.8, 
+          stagger: 0.1,
+          ease: "power4.inOut"
+        },
+        "-=0.7"
       );
 
       // Zooms image inside wrapper
-      gsap.fromTo(".flagship-img", 
-        { scale: 1.2 }, 
+      tl.fromTo(".flagship-img", 
+        { scale: 1.15 }, 
         { 
           scale: 1, 
-          duration: 1.8, 
-          stagger: 0.15,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: ".flagship-grid",
-            start: "top 75%",
-            toggleActions: "play none none none"
-          }
-        }
+          duration: 1.0, 
+          stagger: 0.1,
+          ease: "power3.out"
+        },
+        "-=0.8"
       );
     }, sectionRef);
 
@@ -90,9 +79,9 @@ export default function FlagshipProgrammes() {
       id: "natco",
       title: "NATCO: Empowering Nigeria's Informal Sector",
       shortTitle: "NATCO Conference",
-      description: "The Nigerian Artisans and Technicians Conference & Exhibition (NATCO) is GSSL's annual landmark event addressing the skill and recognition gap in Nigeria’s informal economy. Partnering with federal ministries, state governments, and corporate sponsors, we deliver masterclasses in modern vocational tracks—including CNG vehicle conversion, solar installation, and digital diagnostic tools—equipping thousands of artisans across Lagos, Kano, Bauchi, and Oyo with industry-recognized certifications and essential business tools to thrive in a globalized market.",
+      description: "NATCO is our annual conference for Nigeria's informal sector. We partner with government and corporate sponsors to provide masterclasses in modern skills like solar installation and CNG conversion, giving thousands of artisans the certifications and tools they need to grow.",
       metric: "4+ States Covered",
-      image: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?q=80&w=800&auto=format&fit=crop",
+      image: "/natco-logo.png",
       ctaText: "Explore the Conference",
       url: "#contact"
     },
@@ -100,9 +89,9 @@ export default function FlagshipProgrammes() {
       id: "oyo-data-portal",
       title: "Oyo State Commerce & Trade Portal",
       shortTitle: "Data Collection Portal",
-      description: "Traditional markets and informal trade sectors in Nigeria have historically suffered from a lack of structured data, hindering effective policy and financial planning. Partnering with the Oyo State Ministry of Trade, Industry, Investment, and Cooperatives, GSSL built and deployed a proprietary digital platform to collect and collate comprehensive trade data. This portal serves as the strategic data backbone that enables the state government to design targeted developmental initiatives, allocate resources, and formalize local commerce.",
+      description: "Informal markets often lack the data needed for effective planning. We built a digital platform for the Oyo State Government to collect comprehensive trade data. This helps the government allocate resources, plan initiatives, and support local commerce.",
       metric: "300,000+ Profiles",
-      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop",
+      image: "/Partners-logos/oyo-state-logo-removebg-preview.png",
       ctaText: "View Portal Overview",
       url: "https://oyostatecommerce.org.ng"
     },
@@ -110,9 +99,9 @@ export default function FlagshipProgrammes() {
       id: "ise-dotun",
       title: "Ise D'otun: Business Growth & Risk Mitigation",
       shortTitle: "Ise D'otun Initiative",
-      description: "Small-scale industrialists, traders, and artisans face constant operational risks without access to formal safety nets, threatening their business survival. Operated in direct collaboration with the Oyo State Government, the Ise D'otun Initiative is a targeted business development programme designed to foster economic resilience. The programme utilizes the Oyo State Business Insurance (Fire & Special Perils) product as its practical delivery vehicle, ensuring grassroots merchants are both trained to scale and fully protected against unforeseen disasters.",
+      description: "Small businesses face big risks without insurance. In partnership with the Oyo State Government, the Ise D'otun Initiative provides training and the Oyo State Business Insurance, ensuring local merchants can grow safely and are protected from disasters.",
       metric: "Risk & Growth Covered",
-      image: "https://images.unsplash.com/photo-1542838132-92c53300491e?q=80&w=800&auto=format&fit=crop",
+      image: "/IseDotun.png",
       ctaText: "Read Case Study",
       url: "https://oyostatebusinessinsurance.com.ng/index.html"
     },
@@ -120,9 +109,9 @@ export default function FlagshipProgrammes() {
       id: "nnpc-partnership",
       title: "NNPC Artisan Training Program",
       shortTitle: "NNPC Partnership",
-      description: "Bridging the gap between raw vocational ambition and industrial-grade standards is essential for local content development in Nigeria's energy sector. Serving as the trusted on-the-ground execution partner for the Nigerian National Petroleum Corporation (NNPC), GSSL implements specialized, high-impact training academies for local artisans. The program culminates in the handover of professional-grade tools and equipment to graduates, ensuring they can immediately establish self-sustaining enterprises.",
+      description: "Local artisans need professional skills to work in Nigeria's energy sector. We run specialized training academies for the NNPC, giving graduates the skills, tools, and equipment they need to start their own businesses immediately.",
       metric: "Equipment Handovers",
-      image: "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?q=80&w=800&auto=format&fit=crop",
+      image: "/NNPC.png",
       ctaText: "Learn More",
       url: "#contact"
     }
@@ -152,12 +141,16 @@ export default function FlagshipProgrammes() {
               >
                 <div>
                   {/* Centered Image Wrapper */}
-                  <div className="relative w-full aspect-[16/10] sm:aspect-[16/9] rounded-2xl overflow-hidden mb-8 flagship-img-wrap bg-gray-100">
-                    <img 
-                      src={prog.image} 
-                      alt={prog.shortTitle} 
-                      className="flagship-img w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" 
-                    />
+                  <div className="relative w-full aspect-[16/10] sm:aspect-[16/9] rounded-2xl overflow-hidden mb-8 flagship-img-wrap bg-gray-50/80 p-8 sm:p-10 ">
+                    <div className="relative w-full h-full">
+                      <Image 
+                        src={prog.image} 
+                        alt={prog.shortTitle} 
+                        fill
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                        className="flagship-img object-contain group-hover:scale-105 transition-transform duration-700" 
+                      />
+                    </div>
                     {/* Metric Badge Overlay */}
                     <span className="absolute top-4 right-4 text-[12px] font-bold tracking-wider text-navy-900 bg-white/80 backdrop-blur-md px-4 py-1.5 rounded-full border border-white/40 shadow-sm uppercase pointer-events-none">
                       {prog.metric}
