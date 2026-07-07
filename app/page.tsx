@@ -4,8 +4,10 @@ import CoreFocus from "@/components/CoreFocus";
 import GSSLAdvantage from "@/components/GSSLAdvantage";
 import ConsultingSolutions from "@/components/ConsultingSolutions";
 import DigitalEcosystem from "@/components/DigitalEcosystem";
+import FlagshipProgrammes from "@/components/FlagshipProgrammes";
 import NationalFootprint from "@/components/NationalFootprint";
 import ExecutiveLeadership from "@/components/ExecutiveLeadership";
+import NewsletterSection from "@/components/NewsletterSection";
 import ContactFooter from "@/components/ContactFooter";
 
 export default function Home() {
@@ -16,9 +18,11 @@ export default function Home() {
       <CoreFocus />
       {/* <GSSLAdvantage /> */}
       <ConsultingSolutions />
-      <DigitalEcosystem />
+      <FlagshipProgrammes />
       <NationalFootprint />
+      <DigitalEcosystem />
       <ExecutiveLeadership />
+      <NewsletterSection />
       <ContactFooter />
     </main>
   );

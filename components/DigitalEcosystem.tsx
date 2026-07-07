@@ -3,6 +3,10 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
 import { ArrowUpRight, ExternalLink } from "lucide-react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 // --- Utility Functions ---
 let instanceCounter = 0;
@@ -313,6 +317,42 @@ function css(uid: string) {
 
 // --- Main Section Component ---
 export default function DigitalEcosystem() {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 80%",
+          toggleActions: "play none none none"
+        }
+      });
+
+      tl.fromTo(".eco-header", 
+        { y: 50, opacity: 0 }, 
+        { y: 0, opacity: 1, duration: 1.2, ease: "power4.out" }
+      )
+      .fromTo(".eco-desc", 
+        { y: 30, opacity: 0 }, 
+        { y: 0, opacity: 1, duration: 1, ease: "power3.out" }, 
+        "-=0.9"
+      )
+      .fromTo(".eco-cta", 
+        { y: 20, opacity: 0 }, 
+        { y: 0, opacity: 1, duration: 0.8, ease: "power3.out" }, 
+        "-=0.8"
+      )
+      .fromTo(".hbg-tile", 
+        { y: 40, opacity: 0, scale: 0.95 }, 
+        { y: 0, opacity: 1, scale: 1, stagger: 0.1, duration: 1, ease: "power3.out" }, 
+        "-=0.7"
+      );
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   const platforms = [
     {
       id: "naija-quick-fix",
@@ -323,14 +363,14 @@ export default function DigitalEcosystem() {
     },
     {
       id: "gpa-insurance",
-      name: "Group Personal Accident",
+      name: "Group Personal Accident Insurance",
       description: "Financial protection against accidental injuries and disabilities.",
       url: "https://gpa-insurance.com",
       image: "/projects-completed/GPA.png",
     },
     {
       id: "nigeria-drivers",
-      name: "Drivers' Verification Portal",
+      name: "NigeriaDrivers",
       description: "Designed to register and verify drivers in Nigeria.",
       url: "https://www.nigeriandrivers.com/index.html",
       image: "/projects-completed/nigeria-drivers.png",
@@ -359,20 +399,20 @@ export default function DigitalEcosystem() {
   ];
 
   return (
-    <section id="programmes" className="w-full bg-white py-16 sm:py-24">
+    <section ref={sectionRef} id="programmes" className="w-full bg-white py-16 sm:py-24">
       <div className="max-w-[1320px] mx-auto px-6 sm:px-8 lg:px-12">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 sm:mb-16 gap-8">
           <div className="max-w-2xl">
-            <h2 className="font-display text-navy-900 text-4xl sm:text-5xl font-semibold leading-tight mb-6">
-              Digital Ecosystem & <br />Proprietary Platforms
+            <h2 className="eco-header font-display text-navy-900 text-4xl sm:text-5xl font-semibold leading-tight mb-6">
+              Some of our Solutions
             </h2>
-            <p className="text-gray-600 text-lg leading-relaxed">
+            <p className="eco-desc text-gray-600 text-lg leading-relaxed">
               We have built a robust suite of technology platforms that act as the infrastructure for our verification, insurance facilitation, and trade data collation services.
             </p>
           </div>
           <a
             href="#contact"
-            className="group flex items-center bg-gray-50 text-navy-900 text-[15px] font-medium rounded-full pl-6 pr-2 py-2 hover:bg-gray-100 transition-colors duration-300 "
+            className="eco-cta group flex items-center bg-gray-50 text-navy-900 text-[15px] font-medium rounded-full pl-6 pr-2 py-2 hover:bg-gray-100 transition-colors duration-300 "
           >
             <span className="mr-4">View all platforms</span>
             <div className="bg-white rounded-full p-2 group-hover:bg-gray-200 transition-colors duration-800 shadow-sm flex items-center justify-center">

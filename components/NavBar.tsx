@@ -58,7 +58,7 @@ export default function NavBar() {
 
   return (
     <>
-      <div className={`fixed top-0 left-0 right-0 z-50 flex justify-center transition-all duration-500 ease-in-out ${scrolled ? "pt-4 px-4 sm:px-6" : "pt-0 px-0"}`}>
+      <div className={`navbar-anim fixed top-0 left-0 right-0 z-50 flex justify-center transition-all duration-500 ease-in-out ${scrolled ? "pt-4 px-4 sm:px-6" : "pt-0 px-0"}`}>
         <nav
           className={`w-full max-w-[1320px] mx-auto transition-all duration-500 ease-in-out flex items-center justify-between ${
             scrolled

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { X, Copy, Check } from 'lucide-react';
-import * as LottiePlayer from "@lottiefiles/lottie-player";
+import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 import successConfetti from '../../animations/success confetti.lottie';
 import successCheck from '../../animations/success.lottie';
 

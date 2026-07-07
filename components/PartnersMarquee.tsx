@@ -3,6 +3,9 @@
 import React, { useEffect, useRef } from "react";
 import Image from "next/image";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const partners = [
   { name: "Ecobank", src: "/Partners-logos/67ab2681939f3-Ecobank.png" },
@@ -18,6 +21,7 @@ const partners = [
 ];
 
 export default function PartnersMarquee() {
+  const sectionRef = useRef<HTMLElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
   const tweenRef = useRef<gsap.core.Tween | null>(null);
@@ -43,6 +47,42 @@ export default function PartnersMarquee() {
     };
   }, []);
 
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.fromTo(".partners-header", 
+        { y: 30, opacity: 0 }, 
+        {
+          y: 0,
+          opacity: 1,
+          duration: 1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 90%",
+            toggleActions: "play none none none"
+          }
+        }
+      );
+
+      gsap.fromTo(".partners-marquee-container", 
+        { y: 40, opacity: 0 }, 
+        {
+          y: 0,
+          opacity: 1,
+          duration: 1.2,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 85%",
+            toggleActions: "play none none none"
+          }
+        }
+      );
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   const handleMouseEnter = () => {
     tweenRef.current?.pause();
   };
@@ -55,14 +95,14 @@ export default function PartnersMarquee() {
   const duplicatedPartners = [...partners, ...partners];
 
   return (
-    <section className="w-full bg-white py-10 overflow-hidden relative border-t border-b border-gray-100">
-      <div className="max-w-[1320px] mx-auto px-6 sm:px-8 lg:px-12 mb-8">
+    <section ref={sectionRef} className="w-full bg-white py-10 overflow-hidden relative border-t border-b border-gray-100">
+      <div className="partners-header max-w-[1320px] mx-auto px-6 sm:px-8 lg:px-12 mb-8">
         <p className="text-sm font-semibold tracking-widest text-navy-900/40 uppercase">Trusted by forward-thinking institutions</p>
       </div>
 
       <div 
         ref={containerRef}
-        className="w-full relative flex overflow-hidden group"
+        className="partners-marquee-container w-full relative flex overflow-hidden group"
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >

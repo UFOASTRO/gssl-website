@@ -1,7 +1,44 @@
-import React from "react";
+"use client";
+
+import React, { useEffect, useRef } from "react";
 import { ArrowRight, BarChart3, Globe2, Lightbulb } from "lucide-react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function ConsultingSolutions() {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 80%",
+          toggleActions: "play none none none"
+        }
+      });
+
+      tl.fromTo(".solutions-header", 
+        { y: 50, opacity: 0 }, 
+        { y: 0, opacity: 1, duration: 1.2, ease: "power4.out" }
+      )
+      .fromTo(".solutions-desc", 
+        { y: 30, opacity: 0 }, 
+        { y: 0, opacity: 1, duration: 1, ease: "power3.out" }, 
+        "-=0.9"
+      )
+      .fromTo(".solutions-card", 
+        { y: 50, opacity: 0 }, 
+        { y: 0, opacity: 1, stagger: 0.15, duration: 1, ease: "power3.out" }, 
+        "-=0.8"
+      );
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   const solutions = [
     {
       id: "business-transformation",
@@ -27,14 +64,14 @@ export default function ConsultingSolutions() {
   ];
 
   return (
-    <section id="solutions" className="w-full bg-white py-24 sm:py-32">
+    <section ref={sectionRef} id="solutions" className="w-full bg-white py-24 sm:py-32">
       <div className="max-w-[1320px] mx-auto px-6 sm:px-8 lg:px-12">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 sm:mb-20 gap-8">
           <div className="max-w-2xl">
-            <h2 className="font-display text-navy-900 text-4xl sm:text-5xl font-semibold leading-tight mb-6">
+            <h2 className="solutions-header font-display text-navy-900 text-4xl sm:text-5xl font-semibold leading-tight mb-6">
               Consulting &<br />Advisory Solutions
             </h2>
-            <p className="text-gray-600 text-lg leading-relaxed">
+            <p className="solutions-desc text-gray-600 text-lg leading-relaxed">
               Project development, financial advisory, and tailored solutions that solve real challenges. We serve public institutions, private enterprises, and individuals seeking clarity, structure, and results.
             </p>
           </div>
@@ -44,7 +81,7 @@ export default function ConsultingSolutions() {
           {solutions.map((sol) => {
             const Icon = sol.icon;
             return (
-              <div key={sol.id} className="bg-[#f8f9fa] rounded-[2rem] p-8 sm:p-10 border border-gray-100 flex flex-col h-full transition-all duration-500 hover:shadow-lg hover:-translate-y-1">
+              <div key={sol.id} className="solutions-card bg-[#f8f9fa] rounded-[2rem] p-8 sm:p-10 border border-gray-100 flex flex-col h-full transition-all duration-500 hover:shadow-lg hover:-translate-y-1">
                 <div className="w-16 h-16 rounded-2xl bg-white shadow-sm border border-gray-200 flex items-center justify-center mb-8">
                   <Icon className="w-8 h-8 text-blue-600" />
                 </div>
