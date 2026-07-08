@@ -2,7 +2,7 @@
 
 import dynamic from "next/dynamic";
 import Image from "next/image";
-import React, { useState } from "react";
+import { useState } from "react";
 import "yet-another-react-lightbox/styles.css";
 
 const Lightbox = dynamic(() => import("yet-another-react-lightbox"), {

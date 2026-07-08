@@ -377,6 +377,6 @@ body {
 @media (prefers-reduced-motion: reduce) {
 	.hbg-grid,
 	.hbg-grid * {
-		transition-duration: 100ms !important;
+		transition-duration: 100ms;
 	}
 }

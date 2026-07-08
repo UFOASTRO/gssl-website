@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 let instanceCounter = 0;
 function useInstanceId() {
@@ -249,7 +249,6 @@ function Tile({ tile, isActive, isStatic, onEnter, onLeave, onToggle }) {
 												: undefined
 										}
 										tabIndex={isActive ? 0 : -1}
-										aria-hidden={!isActive}
 										onClick={(e) => e.stopPropagation()}
 									>
 										{tile.link.label ?? "Learn more"}

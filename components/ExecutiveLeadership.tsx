@@ -2,15 +2,9 @@
 
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import {
-	Award,
-	CheckCircle2,
-	Globe,
-	ShieldCheck,
-	TrendingUp,
-} from "lucide-react";
+import { CheckCircle2, Globe } from "lucide-react";
 import Image from "next/image";
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 gsap.registerPlugin(ScrollTrigger);
 

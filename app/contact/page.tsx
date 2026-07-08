@@ -33,7 +33,7 @@ export default function ContactPage() {
 			}
 		}, 400); // wait for enter animation
 		return () => clearTimeout(timer);
-	}, [step]);
+	}, []);
 
 	const validateStep = () => {
 		let isValid = true;
@@ -139,16 +139,14 @@ export default function ContactPage() {
 									if (
 										formData.firstName &&
 										formData.lastName &&
-										formData.email &&
-										formData.email.includes("@")
+										formData.email?.includes("@")
 									)
 										setStep(3);
 								}}
 								disabled={
 									!formData.firstName ||
 									!formData.lastName ||
-									!formData.email ||
-									!formData.email.includes("@")
+									!formData.email?.includes("@")
 								}
 								className={`transition-colors disabled:opacity-50 disabled:hover:text-gray-400 ${step === 3 ? "text-blue-600 font-bold" : ""} ${formData.firstName && formData.lastName && formData.email ? "hover:text-navy-900" : ""}`}
 							>

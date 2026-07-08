@@ -39,7 +39,7 @@ export default function AdminDashboard() {
 
 	useEffect(() => {
 		fetchEvents();
-	}, []);
+	}, [fetchEvents]);
 
 	const fetchEvents = async () => {
 		setLoading(true);
