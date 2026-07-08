@@ -1,20 +1,20 @@
 "use client";
 
 export default function Background() {
-  return (
-    <>
-      <div className="fixed inset-0 -z-50 overflow-hidden bg-white">
-        {/* Animated Gradient */}
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-cyan-400/5 animate-gradient" />
+	return (
+		<>
+			<div className="fixed inset-0 -z-50 overflow-hidden bg-white">
+				{/* Animated Gradient */}
+				<div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-cyan-400/5 animate-gradient" />
 
-        {/* Animated Grid */}
-        <div className="absolute inset-0 grid-pattern" />
+				{/* Animated Grid */}
+				<div className="absolute inset-0 grid-pattern" />
 
-        {/* Noise */}
-        <div className="absolute inset-0 noise opacity-[0.015]" />
-      </div>
+				{/* Noise */}
+				<div className="absolute inset-0 noise opacity-[0.015]" />
+			</div>
 
-      <style jsx>{`
+			<style jsx>{`
         .grid-pattern {
           background-image:
             linear-gradient(rgba(15, 27, 51, 0.04) 1px, transparent 1px),
@@ -42,6 +42,6 @@ export default function Background() {
           background-size: 200% 200%;
         }
       `}</style>
-    </>
-  );
+		</>
+	);
 }
