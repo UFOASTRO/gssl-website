@@ -120,7 +120,7 @@ export default function CoreFocus() {
 		<section
 			ref={sectionRef}
 			id="core-focus"
-			className="w-full bg-[#f8f9fa] py-24 sm:py-32 relative"
+			className="w-full bg-[#f8f9fa] py-24 sm:py-32 relative overflow-hidden"
 		>
 			<div
 				id="company"
@@ -176,7 +176,7 @@ export default function CoreFocus() {
 					{/* Right Column: Images */}
 					<div className="relative w-full aspect-square lg:aspect-auto lg:h-full min-h-[350px] sm:min-h-[500px] lg:min-h-[700px]">
 						{/* Back Image */}
-						<div className="focus-img-back-wrap absolute top-0 left-20 w-[80%] h-[90%] rounded-[2rem] overflow-hidden shadow-sm bg-gray-200">
+						<div className="focus-img-back-wrap absolute top-0 left-4 sm:left-10 lg:left-20 w-[85%] lg:w-[80%] h-[90%] rounded-[2rem] overflow-hidden shadow-sm bg-gray-200">
 							<Image
 								src="/natco-oyo-training-program.jpg"
 								alt="Business Strategy"
@@ -186,7 +186,7 @@ export default function CoreFocus() {
 							/>
 						</div>
 						{/* Front Image */}
-						<div className="focus-img-front-wrap absolute -top-20 -right-20 w-[55%] h-[60%] rounded-[2rem] overflow-hidden shadow-2xl z-10 bg-gray-200">
+						<div className="focus-img-front-wrap absolute -top-8 lg:-top-20 right-0 lg:-right-20 w-[70%] lg:w-[55%] h-[60%] rounded-[2rem] overflow-hidden shadow-2xl z-10 bg-gray-200">
 							<Image
 								src="/Institutional-partnership.png"
 								alt="Collaboration"

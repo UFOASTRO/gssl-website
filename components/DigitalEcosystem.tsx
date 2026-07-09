@@ -35,9 +35,7 @@ function toTemplate(weights: number[]) {
 }
 
 function useMediaQuery(query: string) {
-	const [matches, setMatches] = useState(() =>
-		typeof window !== "undefined" ? window.matchMedia(query).matches : false,
-	);
+	const [matches, setMatches] = useState(false);
 	useEffect(() => {
 		const mql = window.matchMedia(query);
 		const handler = (e: MediaQueryListEvent) => setMatches(e.matches);
