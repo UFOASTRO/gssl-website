@@ -10,7 +10,7 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import type React from "react";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
 
 type Event = {
@@ -37,11 +37,7 @@ export default function AdminDashboard() {
 	const [files, setFiles] = useState<FileList | null>(null);
 	const [uploading, setUploading] = useState(false);
 
-	useEffect(() => {
-		fetchEvents();
-	}, [fetchEvents]);
-
-	const fetchEvents = async () => {
+	const fetchEvents = useCallback(async () => {
 		setLoading(true);
 		const { data, error } = await supabase
 			.from("events")
@@ -52,7 +48,11 @@ export default function AdminDashboard() {
 			setEvents(data);
 		}
 		setLoading(false);
-	};
+	}, []);
+
+	useEffect(() => {
+		fetchEvents();
+	}, [fetchEvents]);
 
 	const resetForm = () => {
 		setEditingId(null);
