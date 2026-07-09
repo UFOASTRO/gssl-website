@@ -214,7 +214,7 @@ export default function ExecutiveLeadership() {
 											<button
 												key={tab.id}
 												onClick={() => setActiveTab(tab.id)}
-												className={`pb-3 text-xs sm:text-sm font-medium transition-all duration-300 relative ${
+												className={`py-3 px-1 text-sm sm:text-base font-medium transition-all duration-300 relative ${
 													activeTab === tab.id
 														? "text-navy-900 border-b-2 border-blue-600 font-semibold"
 														: "text-gray-400 hover:text-gray-600 border-b border-transparent"
@@ -228,7 +228,7 @@ export default function ExecutiveLeadership() {
 									{/* Tabs Window */}
 									<div className="min-h-[200px] flex flex-col justify-start">
 										{activeTab === "bio" && (
-											<p className="text-gray-600 text-sm leading-relaxed animate-fade-in">
+											<p className="text-gray-600 text-sm sm:text-base leading-relaxed animate-fade-in">
 												{ceo.bio}
 											</p>
 										)}
@@ -238,7 +238,7 @@ export default function ExecutiveLeadership() {
 												{ceo.credentials.map((cred, idx) => (
 													<li
 														key={idx}
-														className="flex items-start text-gray-600 text-xs sm:text-sm"
+														className="flex items-start text-gray-600 text-sm sm:text-base"
 													>
 														<CheckCircle2 className="w-4 h-4 text-blue-600 mr-2 flex-shrink-0 mt-0.5" />
 														<span>{cred}</span>
@@ -248,7 +248,7 @@ export default function ExecutiveLeadership() {
 										)}
 
 										{activeTab === "vision" && (
-											<p className="text-gray-600 text-sm leading-relaxed italic border-l-2 border-blue-500 pl-4 py-1 animate-fade-in">
+											<p className="text-gray-600 text-sm sm:text-base leading-relaxed italic border-l-2 border-blue-500 pl-4 py-1 animate-fade-in">
 												{ceo.vision}
 											</p>
 										)}

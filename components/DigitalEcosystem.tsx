@@ -262,7 +262,7 @@ function Tile({ tile, isActive, onEnter, onLeave, onToggle }: any) {
 								className="hbg-desc"
 								style={{
 									margin: 0,
-									fontSize: "14px",
+									fontSize: "16px",
 									color: "rgba(255,255,255,0.9)",
 								}}
 							>

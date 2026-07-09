@@ -174,7 +174,7 @@ export default function CoreFocus() {
 					</div>
 
 					{/* Right Column: Images */}
-					<div className="relative w-full aspect-square lg:aspect-auto lg:h-full min-h-[500px] lg:min-h-[700px]">
+					<div className="relative w-full aspect-square lg:aspect-auto lg:h-full min-h-[350px] sm:min-h-[500px] lg:min-h-[700px]">
 						{/* Back Image */}
 						<div className="focus-img-back-wrap absolute top-0 left-20 w-[80%] h-[90%] rounded-[2rem] overflow-hidden shadow-sm bg-gray-200">
 							<Image

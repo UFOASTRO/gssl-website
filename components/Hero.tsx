@@ -124,7 +124,7 @@ export default function Hero() {
 				</div>
 
 				{/* Globe Container */}
-				<div className="hero-globe relative w-full lg:w-[45%] xl:w-[45%] max-w-[500px] lg:max-w-[600px] aspect-square flex-shrink-0 order-1 lg:order-2 z-10 pointer-events-auto mix-blend-darken opacity-90 mt-10 lg:mt-0">
+				<div className="hero-globe hidden lg:block relative w-full lg:w-[45%] xl:w-[45%] max-w-[500px] lg:max-w-[600px] aspect-square flex-shrink-0 order-1 lg:order-2 z-10 pointer-events-auto mix-blend-darken opacity-90 mt-10 lg:mt-0">
 					<Globe />
 
 					{/* Card 1: Top Right */}

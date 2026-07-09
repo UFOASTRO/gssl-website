@@ -121,7 +121,7 @@ export default function NavBar() {
 
 					{/* MOBILE TOGGLE */}
 					<button
-						className="md:hidden text-navy-900 p-2 rounded-full hover:bg-gray-100 transition-colors mr-1"
+						className="md:hidden text-navy-900 p-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full hover:bg-gray-100 transition-colors mr-1"
 						onClick={() => setMenuOpen(true)}
 						aria-label="Open Menu"
 					>
@@ -155,7 +155,7 @@ export default function NavBar() {
 						</div>
 						<button
 							onClick={() => setMenuOpen(false)}
-							className="bg-gray-50 text-navy-900 p-2 rounded-full hover:bg-gray-100 transition-colors"
+							className="bg-gray-50 text-navy-900 p-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full hover:bg-gray-100 transition-colors"
 						>
 							<X className="w-5 h-5" />
 						</button>
