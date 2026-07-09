@@ -45,8 +45,14 @@ export default function AdminLayout({
 
 	if (loading) {
 		return (
-			<div className="min-h-screen flex items-center justify-center bg-gray-50">
-				Loading...
+			<div className="min-h-screen flex flex-col items-center justify-center bg-gray-50 relative overflow-hidden">
+				<div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-cyan-400/5 pointer-events-none" />
+				<div className="relative z-10 flex flex-col items-center gap-4">
+					<div className="w-10 h-10 border-4 border-blue-100 border-t-blue-600 rounded-full animate-spin" />
+					<p className="text-navy-700 text-sm font-medium tracking-wide animate-pulse">
+						Verifying session...
+					</p>
+				</div>
 			</div>
 		);
 	}
@@ -55,12 +61,12 @@ export default function AdminLayout({
 		<div className="min-h-screen bg-gray-50 font-sans">
 			{pathname !== "/admin/login" && (
 				<header className="bg-white border-b border-gray-200 px-6 py-4 flex justify-between items-center z-50 relative">
-					<h1 className="font-display font-semibold text-xl text-navy-900">
-						GGSL Admin
+					<h1 className="font-display font-semibold text-xl text-navy-900 tracking-tight">
+						GSSL Admin
 					</h1>
 					<button
 						onClick={() => supabase.auth.signOut()}
-						className="text-sm font-medium text-gray-600 hover:text-red-600 transition-colors"
+						className="text-sm font-medium text-gray-600 hover:text-red-600 transition-colors cursor-pointer"
 					>
 						Sign Out
 					</button>
