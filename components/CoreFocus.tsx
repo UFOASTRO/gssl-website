@@ -5,7 +5,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useRef } from "react";
-import natcoImg from "@/public/natco-oyo-training-program.JPG";
+import natcoImg from "@/public/natco-oyo-training-program.jpg";
 import instImg from "@/public/Institutional-partnership.png";
 
 gsap.registerPlugin(ScrollTrigger);
