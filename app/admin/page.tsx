@@ -311,6 +311,7 @@ export default function AdminDashboard() {
 												src={img}
 												alt="Event image"
 												fill
+												unoptimized
 												className="object-cover"
 											/>
 											<button
@@ -402,6 +403,7 @@ export default function AdminDashboard() {
 											src={event.images[0]}
 											alt={event.title}
 											fill
+											unoptimized
 											className="object-cover"
 										/>
 									</div>
