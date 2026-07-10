@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Instrument_Sans } from "next/font/google";
 import "./globals.css";
 import Background from "@/components/Background";
+import { Analytics } from "@vercel/analytics/next"
 
 const geistSans = Geist({
 	variable: "--font-geist-sans",
@@ -36,6 +37,7 @@ export default function RootLayout({
 		>
 			<body className="min-h-full flex flex-col font-sans" suppressHydrationWarning>
 				<Background />
+				<Analytics />
 				{children}
 			</body>
 		</html>
