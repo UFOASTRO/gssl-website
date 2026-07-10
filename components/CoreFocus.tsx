@@ -5,6 +5,8 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useRef } from "react";
+import natcoImg from "@/public/natco-oyo-training-program.jpg";
+import instImg from "@/public/Institutional-partnership.png";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -178,7 +180,7 @@ export default function CoreFocus() {
 						{/* Back Image */}
 						<div className="focus-img-back-wrap absolute top-0 left-4 sm:left-10 lg:left-20 w-[85%] lg:w-[80%] h-[90%] rounded-[2rem] overflow-hidden shadow-sm bg-gray-200">
 							<Image
-								src="/natco-oyo-training-program.jpg"
+								src={natcoImg}
 								alt="Business Strategy"
 								fill
 								sizes="(max-width: 1024px) 80vw, 40vw"
@@ -188,7 +190,7 @@ export default function CoreFocus() {
 						{/* Front Image */}
 						<div className="focus-img-front-wrap absolute -top-8 lg:-top-20 right-0 lg:-right-20 w-[70%] lg:w-[55%] h-[60%] rounded-[2rem] overflow-hidden shadow-2xl z-10 bg-gray-200">
 							<Image
-								src="/Institutional-partnership.png"
+								src={instImg}
 								alt="Collaboration"
 								fill
 								sizes="(max-width: 1024px) 50vw, 25vw"
