@@ -48,7 +48,7 @@ if __name__ == "__main__":
     
     # 1. Main high-res images
     compress_image(os.path.join(base_dir, "Institutional-partnership.png"), 1600)
-    compress_image(os.path.join(base_dir, "natco-oyo-training-program.JPG"), 1600, quality=85)
+    compress_image(os.path.join(base_dir, "natco-oyo-training-program.jpg"), 1600, quality=85)
     
     # 2. Bento grid screenshots
     projects_dir = os.path.join(base_dir, "projects-completed")
