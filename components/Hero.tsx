@@ -92,7 +92,7 @@ export default function Hero() {
 					</p>
 
 					<h1 className="hero-title font-display text-navy-900 text-[clamp(2rem,7vw,4.5rem)] leading-[1.05] tracking-[-0.03em] max-w-[800px]">
-						Building what African MSME's needs to grow.
+						Business development for MSME's across Africa.
 					</h1>
 
 					<p className="hero-desc text-gray-600 text-[16px] sm:text-[18px] leading-relaxed max-w-lg mt-6">

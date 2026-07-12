@@ -28,7 +28,7 @@ const partners = [
 	},
 	{ name: "FMTII", src: "/Partners-logos/fmtii-logo-removebg-preview.png" },
 	// { name: "LCCI", src: "/Partners-logos/lcci-go-removebg-preview.png" },
-	{ name: "Mobil", src: "/Partners-logos/mobil-logo-removebg-preview.png" },
+	// { name: "Mobil", src: "/Partners-logos/mobil-logo-removebg-preview.png" },
 	{
 		name: "Texaco",
 		src: "/Partners-logos/Texaco_logo.svg-removebg-preview.png",
