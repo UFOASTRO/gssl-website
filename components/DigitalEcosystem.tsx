@@ -277,6 +277,7 @@ function Tile({ tile, isActive, onEnter, onLeave, onToggle }: any) {
 // --- Main Section Component ---
 export default function DigitalEcosystem() {
 	const sectionRef = useRef<HTMLElement>(null);
+	const [isExpanded, setIsExpanded] = useState(false);
 
 	useEffect(() => {
 		const ctx = gsap.context(() => {
@@ -323,6 +324,23 @@ export default function DigitalEcosystem() {
 		return () => ctx.revert();
 	}, []);
 
+	useEffect(() => {
+		if (isExpanded) {
+			gsap.fromTo(
+				".hbg-tile:nth-child(n+7)",
+				{ y: 40, opacity: 0, scale: 0.95 },
+				{
+					y: 0,
+					opacity: 1,
+					scale: 1,
+					stagger: 0.1,
+					duration: 0.8,
+					ease: "power3.out",
+				}
+			);
+		}
+	}, [isExpanded]);
+
 	const platforms = [
 		{
 			id: "naija-quick-fix",
@@ -366,10 +384,19 @@ export default function DigitalEcosystem() {
 			id: "safe-hire",
 			name: "Safe Hire",
 			description: "Streamlined background checks and verification for hiring.",
-			url: "#",
+			url: "https://www.safehireafrica.com/",
 			image: "/projects-completed/safe-hire.png",
 		},
+		{
+			id: "oyo-state-raffle",
+			name: "Oyo State Raffle",
+			description: "Official Oyo State International Trade Fair Raffle platform.",
+			url: "https://oyoraffle.oyostatecommerce.com.ng/",
+			image: "/oyo-state-raffle.png",
+		},
 	];
+
+	const visiblePlatforms = isExpanded ? platforms : platforms.slice(0, 6);
 
 	return (
 		<section
@@ -393,25 +420,30 @@ export default function DigitalEcosystem() {
 							and trade data collation services.
 						</p>
 					</div>
-					<a
-						href="#contact"
-						className="eco-cta group flex items-center bg-gray-50 text-navy-900 text-[15px] font-medium rounded-full pl-6 pr-2 py-2 hover:bg-gray-100 transition-colors duration-300 "
-					>
-						<span className="mr-4">View all platforms</span>
-						<div className="bg-white rounded-full p-2 group-hover:bg-gray-200 transition-colors duration-800 shadow-sm flex items-center justify-center">
-							<ArrowUpRight className="w-4 h-4 transition-transform duration-500 group-hover:rotate-45" />
-						</div>
-					</a>
 				</div>
 
 				{/* Animated Bento Grid */}
 				<HoverBentoGrid
-					tiles={platforms}
+					tiles={visiblePlatforms}
 					columns={3}
 					gap={24}
 					radius={24}
 					rowHeight={260}
 				/>
+
+				{platforms.length > 6 && (
+					<div className="mt-12 flex justify-center">
+						<button
+							onClick={() => setIsExpanded(!isExpanded)}
+							className="eco-cta group flex items-center bg-gray-50 text-navy-900 text-[15px] font-medium rounded-full pl-6 pr-2 py-2 hover:bg-gray-100 transition-colors duration-300 "
+						>
+							<span className="mr-4">{isExpanded ? "Show less" : "View all platforms"}</span>
+							<div className="bg-white rounded-full p-2 group-hover:bg-gray-200 transition-colors duration-800 shadow-sm flex items-center justify-center">
+								<ArrowUpRight className={`w-4 h-4 transition-transform duration-500 ${isExpanded ? "rotate-[135deg]" : "group-hover:rotate-45"}`} />
+							</div>
+						</button>
+					</div>
+				)}
 			</div>
 		</section>
 	);

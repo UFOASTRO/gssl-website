@@ -198,7 +198,7 @@ export default function NationalFootprint() {
 					{/* Right Column: Text Box */}
 					<div className="footprint-text-box bg-blue-900/20 border border-blue-500/20 backdrop-blur-md rounded-[2rem] p-8 sm:p-12 flex flex-col justify-center">
 						<h3 className="text-2xl font-display font-semibold text-white mb-6">
-							Impacting lives across Nigeria.
+							Impacting lives across Africa.
 						</h3>
 						<p className="text-gray-300 text-lg leading-relaxed mb-6">
 							With our headquarters in Lagos and regional offices spanning

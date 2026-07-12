@@ -251,7 +251,7 @@ export default function ContactFooter() {
 							&copy; {new Date().getFullYear()} Global Sight Services Limited.
 							All rights reserved.
 						</p>
-						<p>Designed in Nigeria</p>
+						{/* <p>Designed in Nigeria</p> */}
 					</div>
 				</div>
 			</footer>

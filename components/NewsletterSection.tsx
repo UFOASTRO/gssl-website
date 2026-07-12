@@ -121,7 +121,7 @@ export default function NewsletterSection() {
 						</h2>
 						<p className="text-gray-600 text-lg leading-relaxed">
 							Stay updated with our most recent activities, workshops, and
-							milestones as we continue to build and support Nigerian
+							milestones as we continue to build and support African
 							enterprises.
 						</p>
 					</div>

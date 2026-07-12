@@ -92,11 +92,11 @@ export default function Hero() {
 					</p>
 
 					<h1 className="hero-title font-display text-navy-900 text-[clamp(2rem,7vw,4.5rem)] leading-[1.05] tracking-[-0.03em] max-w-[800px]">
-						Building what Nigerian enterprise needs to grow.
+						Building what African MSME's needs to grow.
 					</h1>
 
 					<p className="hero-desc text-gray-600 text-[16px] sm:text-[18px] leading-relaxed max-w-lg mt-6">
-						We partner with institutions and everyday Nigerians to verify trust,
+						We partner with institutions and everyday Africans to verify trust,
 						facilitate finance, and deliver tools that turn ambition into
 						outcomes.
 					</p>
@@ -142,7 +142,7 @@ export default function Hero() {
 						<p className="text-navy-900/90 text-md font-medium leading-relaxed">
 							We create impact with currently{" "}
 							<span className="font-bold text-navy-900">
-								4+ States impacted{" "}
+								7+ States impacted{" "}
 							</span>
 							bringing IT powered solutions{" "}
 							<span className="font-bold text-navy-900">across nigeria</span>.

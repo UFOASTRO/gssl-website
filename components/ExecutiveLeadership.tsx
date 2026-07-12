@@ -101,7 +101,7 @@ export default function ExecutiveLeadership() {
 			"Key implementation partner for the NNPC artisan training and Oyo State's trade-data collation initiatives.",
 		],
 		vision:
-			"At GSSL, our focus is on building practical, technology-driven solutions that solve real challenges. By bridging operational gaps, creating trust with digital tools, and delivering capacity building, we align public-sector policies with grassroots execution to unlock lasting economic opportunity across Nigeria.",
+			"At GSSL, our focus is on building practical, technology-driven solutions that solve real challenges. By bridging operational gaps, creating trust with digital tools, and delivering capacity building, we align public-sector policies with grassroots execution to unlock lasting economic opportunity across Africa.",
 	};
 
 	const tabs = [

@@ -27,6 +27,7 @@ export default function Home() {
 		<main className="flex min-h-screen flex-col items-center justify-between relative">
 			<Hero />
 			<PartnersMarquee />
+			<NewsletterSection />
 			<CoreFocus />
 			{/* <GSSLAdvantage /> */}
 			<ConsultingSolutions />
@@ -34,7 +35,6 @@ export default function Home() {
 			<DigitalEcosystem />
 			<NationalFootprint />
 			<ExecutiveLeadership />
-			<NewsletterSection />
 			<ContactFooter />
 			<WhatsAppButton />
 		</main>

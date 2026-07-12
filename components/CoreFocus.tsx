@@ -113,7 +113,7 @@ export default function CoreFocus() {
 		{
 			title: "Institutional Partnerships",
 			description:
-				"We work directly with state governments and corporate partners to deliver training and funding to local communities.",
+				"We work directly with Fedral, state and local governments and corporate partners to deliver training and funding to people at the grassroots.",
 			number: "03",
 		},
 	];
@@ -142,7 +142,7 @@ export default function CoreFocus() {
 					<div className="bg-gray-200/50 rounded-[2rem] p-8 sm:p-12 flex flex-col h-full justify-center">
 						<p className="focus-desc text-gray-700 text-lg sm:text-xl leading-relaxed mb-10">
 							We help clients turn plans into reality. GSSL supports the sectors
-							that matter most to the Nigerian economy.
+							that matter most to the African economy.
 						</p>
 						<div className="flex flex-col gap-5">
 							{focusAreas.map((area, idx) => (
