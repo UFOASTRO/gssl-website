@@ -91,15 +91,15 @@ export default function FlagshipProgrammes() {
 			url: "#contact",
 		},
 		{
-			id: "oyo-data-portal",
-			title: "Oyo State Commerce & Trade Portal",
-			shortTitle: "Data Collection Portal",
+			id: "ruawi",
+			title: "Road Users Awareness And Welfare Initiative (RUAWI)",
+			shortTitle: "RUAWI",
 			description:
-				"Informal markets often lack the data needed for effective planning. We built a digital platform for the Oyo State Government to collect comprehensive trade data. This helps the government allocate resources, plan initiatives, and support local commerce.",
-			metric: "300,000+ Profiles",
-			image: "/Partners-logos/oyo-state-logo-removebg-preview.png",
-			ctaText: "View Portal Overview",
-			url: "https://oyostatecommerce.org.ng",
+				"RUAWI is an NGO established to grow nationwide consciousness towards reducing the devastating effects of road traffic injuries. We advocate for road safety and the rights of crash victims, aiming to reduce accidents on Nigerian roads by 50% by 2032.",
+			metric: "Road Safety Advocacy",
+			image: "/ruawi.png",
+			ctaText: "Visit RUAWI",
+			url: "https://ruawi.com/",
 		},
 		{
 			id: "ise-dotun",

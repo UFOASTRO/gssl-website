@@ -127,7 +127,7 @@ export default function ContactFooter() {
 							</h4>
 							<p className="text-gray-600 text-lg leading-relaxed flex flex-col gap-2">
 								<span>
-									<strong>Abuja:</strong> Suite 204, Central Business District
+									<strong>Abuja:</strong> Suite 15 & 16, m Plaza, Ahmadu Bello Way, Area, Garki, Abuja. Nigeria
 								</span>
 								<span>
 									<strong>Kano:</strong> Suite 63/64, Yayo, Farm Centre Market

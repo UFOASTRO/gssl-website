@@ -82,7 +82,7 @@ export default function PartnersMarquee() {
 		tweenRef.current = gsap.to(scrollContent, {
 			x: () => `-${contentWidth / 2}px`, // Move exactly half the total width (since we duplicated it once)
 			ease: "none",
-			duration: 50, // Adjust duration for speed
+			duration: 200, // Adjust duration for speed
 			repeat: -1,
 		});
 
