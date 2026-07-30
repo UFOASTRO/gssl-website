@@ -61,15 +61,27 @@ export default function AdminLayout({
 		<div className="min-h-screen bg-gray-50 font-sans">
 			{pathname !== "/admin/login" && (
 				<header className="bg-white border-b border-gray-200 px-6 py-4 flex justify-between items-center z-50 relative">
-					<h1 className="font-display font-semibold text-xl text-navy-900 tracking-tight">
-						GSSL Admin
-					</h1>
-					<button
-						onClick={() => supabase.auth.signOut()}
-						className="text-sm font-medium text-gray-600 hover:text-red-600 transition-colors cursor-pointer"
-					>
-						Sign Out
-					</button>
+					<div className="flex items-center gap-8">
+						<h1 className="font-display font-semibold text-xl text-navy-900 tracking-tight">
+							GSSL Admin
+						</h1>
+						<nav className="hidden sm:flex items-center gap-4">
+							<a href="/admin" className={`text-sm font-medium transition-colors ${pathname === '/admin' ? 'text-blue-600' : 'text-gray-500 hover:text-gray-900'}`}>
+								Events
+							</a>
+							<a href="/admin/projects" className={`text-sm font-medium transition-colors ${pathname === '/admin/projects' ? 'text-blue-600' : 'text-gray-500 hover:text-gray-900'}`}>
+								Projects
+							</a>
+						</nav>
+					</div>
+					<div className="flex items-center gap-4">
+						<button
+							onClick={() => supabase.auth.signOut()}
+							className="text-sm font-medium text-gray-600 hover:text-red-600 transition-colors cursor-pointer"
+						>
+							Sign Out
+						</button>
+					</div>
 				</header>
 			)}
 			<main className="relative z-10">{children}</main>

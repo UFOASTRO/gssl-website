@@ -2,6 +2,8 @@ import dynamic from "next/dynamic";
 import Hero from "@/components/Hero";
 import PartnersMarquee from "@/components/PartnersMarquee";
 
+const ProjectNewsModal = dynamic(() => import("@/components/ProjectNewsModal"));
+
 const CoreFocus = dynamic(() => import("@/components/CoreFocus"));
 const ConsultingSolutions = dynamic(
 	() => import("@/components/ConsultingSolutions"),
@@ -25,6 +27,7 @@ const WhatsAppButton = dynamic(() => import("@/components/WhatsAppButton"));
 export default function Home() {
 	return (
 		<main className="flex min-h-screen flex-col items-center justify-between relative">
+			<ProjectNewsModal />
 			<Hero />
 			<PartnersMarquee />
 			<NewsletterSection />
