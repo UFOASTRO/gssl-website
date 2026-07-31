@@ -340,8 +340,15 @@ export default function DigitalEcosystem() {
 			);
 		}
 	}, [isExpanded]);
-
+	
 	const platforms = [
+		{
+			id: "oyo-state-raffle",
+			name: "Oyo State Raffle",
+			description: "Official Oyo State International Trade Fair Raffle platform.",
+			url: "https://oyoraffle.oyostatecommerce.com.ng/",
+			image: "/oyo-state-raffle.png",
+		},
 		{
 			id: "naija-quick-fix",
 			name: "Naijaquickfix",
@@ -386,13 +393,6 @@ export default function DigitalEcosystem() {
 			description: "Streamlined background checks and verification for hiring.",
 			url: "https://www.safehireafrica.com/",
 			image: "/projects-completed/safe-hire.png",
-		},
-		{
-			id: "oyo-state-raffle",
-			name: "Oyo State Raffle",
-			description: "Official Oyo State International Trade Fair Raffle platform.",
-			url: "https://oyoraffle.oyostatecommerce.com.ng/",
-			image: "/oyo-state-raffle.png",
 		},
 	];
 
