@@ -349,13 +349,20 @@ export default function DigitalEcosystem() {
 			url: "https://oyoraffle.oyostatecommerce.com.ng/",
 			image: "/oyo-state-raffle.png",
 		},
-		{
-			id: "naija-quick-fix",
-			name: "Naijaquickfix",
+			{
+			id: "oyo-state-commerce",
+			name: "Oyo State Data Collation",
 			description:
-				"Connecting verified Nigerian artisans and technicians with clients.",
-			url: "https://naijaquickfix.com.ng",
-			image: "/projects-completed/naija-quick-fix.png",
+				"A platform for collecting and collating commerce data in Oyo State.",
+			url: "https://oyostatecommerce.org.ng",
+			image: "/projects-completed/oyostatecommerce.png",
+		},
+				{
+			id: "safe-hire",
+			name: "Safe Hire",
+			description: "Streamlined background checks and verification for hiring.",
+			url: "https://www.safehireafrica.com/",
+			image: "/projects-completed/safe-hire.png",
 		},
 		{
 			id: "gpa-insurance",
@@ -372,27 +379,19 @@ export default function DigitalEcosystem() {
 			url: "https://www.nigeriandrivers.com/index.html",
 			image: "/projects-completed/nigeria-drivers.png",
 		},
-		{
-			id: "oyo-state-commerce",
-			name: "Oyo State Data Collation",
+			{
+			id: "naija-quick-fix",
+			name: "Naijaquickfix",
 			description:
-				"A platform for collecting and collating commerce data in Oyo State.",
-			url: "https://oyostatecommerce.org.ng",
-			image: "/projects-completed/oyostatecommerce.png",
-		},
-		{
+				"Connecting verified Nigerian artisans and technicians with clients.",
+			url: "https://naijaquickfix.com.ng",
+			image: "/projects-completed/naija-quick-fix.png",
+		},{
 			id: "hotel-lodgers",
 			name: "Hotel Lodgers Portal",
 			description: "Enhancing security and authenticity of hotel stays.",
 			url: "https://nigerianhotellodgers.com",
 			image: "/projects-completed/hotel-lodgers.png",
-		},
-		{
-			id: "safe-hire",
-			name: "Safe Hire",
-			description: "Streamlined background checks and verification for hiring.",
-			url: "https://www.safehireafrica.com/",
-			image: "/projects-completed/safe-hire.png",
 		},
 	];
 
