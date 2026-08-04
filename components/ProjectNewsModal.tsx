@@ -21,6 +21,7 @@ export default function ProjectNewsModal() {
 	const [isMounted, setIsMounted] = useState(false);
 	const [projects, setProjects] = useState<Project[]>([]);
 	const [currentIndex, setCurrentIndex] = useState(0);
+	const [isPaused, setIsPaused] = useState(false);
 
 	useEffect(() => {
 		setIsMounted(true);
@@ -50,14 +51,14 @@ export default function ProjectNewsModal() {
 
 	// Auto-slide effect
 	useEffect(() => {
-		if (!isOpen || projects.length <= 1) return;
+		if (!isOpen || projects.length <= 1 || isPaused) return;
 		
 		const interval = setInterval(() => {
 			setCurrentIndex((prev) => (prev + 1) % projects.length);
 		}, 5000); // Slide every 5 seconds
 		
 		return () => clearInterval(interval);
-	}, [isOpen, projects.length]);
+	}, [isOpen, projects.length, isPaused]);
 
 	const handleClose = () => {
 		setIsOpen(false);
@@ -90,7 +91,11 @@ export default function ProjectNewsModal() {
 				</button>
 
 				{/* Slider Container */}
-				<div className="relative w-full aspect-[4/5] sm:aspect-[16/9] md:aspect-[21/9] bg-navy-900 rounded-2xl overflow-hidden shadow-2xl">
+				<div 
+					className="relative w-full aspect-[4/5] sm:aspect-[16/9] md:aspect-[21/9] bg-navy-900 rounded-2xl overflow-hidden shadow-2xl"
+					onMouseEnter={() => setIsPaused(true)}
+					onMouseLeave={() => setIsPaused(false)}
+				>
 					
 					{/* Image */}
 					{currentProject.image_url ? (
@@ -154,13 +159,37 @@ export default function ProjectNewsModal() {
 							</p>
 						</div>
 
-						<Link
-							href={currentProject.link || "#"}
-							className="flex-shrink-0 flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white px-6 py-3.5 rounded-xl font-medium transition-all shadow-lg hover:shadow-blue-500/25 active:scale-95 whitespace-nowrap"
-						>
-							Visit Website
-							<ExternalLink className="w-4 h-4" />
-						</Link>
+						{(() => {
+							const rawLink = currentProject.link?.trim();
+							if (!rawLink || rawLink === "#") return null;
+							
+							// Strip out all internal spaces that might cause the browser to block the link
+							let cleanLink = rawLink.replace(/\s+/g, "");
+							
+							// Fix common database entry typos like leading #
+							if (cleanLink.startsWith("#")) {
+								cleanLink = cleanLink.slice(1);
+							}
+							
+							let validUrl = cleanLink;
+							if (!validUrl.startsWith("http://") && !validUrl.startsWith("https://") && !validUrl.startsWith("/")) {
+								validUrl = `https://${validUrl}`;
+							}
+							
+							if (!validUrl) return null;
+							
+							return (
+								<a
+									href={validUrl}
+									target="_blank"
+									rel="noopener noreferrer"
+									className="flex-shrink-0 flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white px-6 py-3.5 rounded-xl font-medium transition-all shadow-lg hover:shadow-blue-500/25 active:scale-95 whitespace-nowrap"
+								>
+									Visit Website
+									<ExternalLink className="w-4 h-4" />
+								</a>
+							);
+						})()}
 					</div>
 
 					{/* Dots Indicator */}
