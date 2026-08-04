@@ -5,9 +5,7 @@ import { ArrowUpRight } from "lucide-react";
 import dynamic from "next/dynamic";
 import { useEffect, useRef } from "react";
 import NavBar from "./NavBar";
-
-// Dynamically import Globe as it uses WebGL and cannot be SSR'd
-const Globe = dynamic(() => import("./Globe"), { ssr: false });
+import { WorldMap } from "./ui/world-map";
 
 export default function Hero() {
 	const containerRef = useRef<HTMLDivElement>(null);
@@ -124,8 +122,29 @@ export default function Hero() {
 				</div>
 
 				{/* Globe Container */}
-				<div className="hero-globe hidden lg:block relative w-full lg:w-[45%] xl:w-[45%] max-w-[500px] lg:max-w-[600px] aspect-square flex-shrink-0 order-1 lg:order-2 z-10 pointer-events-auto mix-blend-darken opacity-90 mt-10 lg:mt-0">
-					<Globe />
+				<div className="hero-globe hidden lg:flex relative w-full lg:w-[55%] xl:w-[60%] lg:max-w-[800px] aspect-[2/1] flex-shrink-0 order-1 lg:order-2 z-10 pointer-events-auto opacity-90 mt-10 lg:mt-0 items-center justify-center transform lg:translate-x-12 xl:translate-x-20">
+					<div className="w-full h-full transform scale-[1.2] md:scale-[1.8] translate-x-10 lg:translate-x-16">
+						<WorldMap
+							dots={[
+								{
+									start: { lat: 6.5244, lng: 3.3792 }, // Lagos
+									end: { lat: 30.0444, lng: 31.2357 }, // Cairo
+								},
+								{
+									start: { lat: 6.5244, lng: 3.3792 }, // Lagos
+									end: { lat: -1.2921, lng: 36.8219 }, // Nairobi
+								},
+								{
+									start: { lat: -1.2921, lng: 36.8219 }, // Nairobi
+									end: { lat: -26.2041, lng: 28.0473 }, // Johannesburg
+								},
+								{
+									start: { lat: -1.2921, lng: 36.8219 }, // Nairobi
+									end: { lat: 30.0444, lng: 31.2357 }, // Cairo
+								},
+							]}
+						/>
+					</div>
 
 					{/* Card 1: Top Right */}
 					<div className="hero-card absolute top-[5%] -left-1 md:-left-8 lg:-left-10 max-w-[170px] bg-white/50 backdrop-blur-md border border-white/60 p-4 rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.06)] z-30 pointer-events-none transform translate-x-4 md:translate-x-0">
