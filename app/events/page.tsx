@@ -7,6 +7,13 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import { supabase } from "@/lib/supabase";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+	title: "News & Events",
+	description:
+		"Stay updated with our most recent activities, workshops, and milestones as we continue to build and support Nigerian enterprises.",
+};
 
 interface Event {
 	id: string;

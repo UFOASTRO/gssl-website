@@ -241,9 +241,9 @@ export default function ContactFooter() {
 
 					{/* Huge Typography Name */}
 					<div className="w-full flex justify-center items-center border-t border-white/10 pt-16 pb-8">
-						<h1 className="footer-huge-text font-display font-black text-[12vw] leading-none tracking-tighter text-white opacity-95 uppercase">
+						<div className="footer-huge-text font-display font-black text-[12vw] leading-none tracking-tighter text-white opacity-95 uppercase">
 							Global Sight
-						</h1>
+						</div>
 					</div>
 
 					<div className="footer-bottom w-full flex justify-between items-center text-sm text-gray-500 pt-8 border-t border-white/10">

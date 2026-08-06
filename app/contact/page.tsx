@@ -104,6 +104,7 @@ export default function ContactPage() {
 
 			<div className="max-w-3xl mx-auto w-full flex-1 flex flex-col justify-center relative z-10">
 				<div className="mb-12">
+					<h1 className="sr-only">Contact GSSL - Global Sight Services Limited</h1>
 					<Link
 						href="/"
 						className="inline-flex items-center text-gray-500 hover:text-navy-900 transition-colors font-medium"
@@ -175,9 +176,9 @@ export default function ContactPage() {
 								transition={transitionProps}
 								className="w-full"
 							>
-								<h1 className="text-3xl md:text-4xl font-display font-semibold text-navy-900 mb-8">
+								<h2 className="text-3xl md:text-4xl font-display font-semibold text-navy-900 mb-8">
 									Let&apos;s start with your name.
-								</h1>
+								</h2>
 								<div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
 									<div>
 										<label className="text-sm font-semibold text-gray-500 mb-2 block">
@@ -248,9 +249,9 @@ export default function ContactPage() {
 								transition={transitionProps}
 								className="w-full"
 							>
-								<h1 className="text-3xl md:text-4xl font-display font-semibold text-navy-900 mb-2">
+								<h2 className="text-3xl md:text-4xl font-display font-semibold text-navy-900 mb-2">
 									Hi {formData.firstName}, what&apos;s your email?
-								</h1>
+								</h2>
 								<p className="text-gray-500 mb-8">
 									We&apos;ll use this to get back to you.
 								</p>
@@ -302,9 +303,9 @@ export default function ContactPage() {
 								transition={transitionProps}
 								className="w-full"
 							>
-								<h1 className="text-3xl md:text-4xl font-display font-semibold text-navy-900 mb-2">
+								<h2 className="text-3xl md:text-4xl font-display font-semibold text-navy-900 mb-2">
 									How can we help you?
-								</h1>
+								</h2>
 								<p className="text-gray-500 mb-8">
 									Tell us a bit about your project or inquiry.
 								</p>
@@ -361,9 +362,9 @@ export default function ContactPage() {
 								<div className="relative z-10 mb-6 h-42 w-42">
 									<DotLottieReact src="/success.lottie" autoplay loop={false} />
 								</div>
-								<h1 className="text-3xl md:text-4xl font-display font-semibold text-navy-900 mb-4">
+								<h2 className="text-3xl md:text-4xl font-display font-semibold text-navy-900 mb-4">
 									Message Sent Successfully!
-								</h1>
+								</h2>
 								<p className="text-gray-600 text-lg mb-8 max-w-md">
 									Thank you for reaching out, {formData.firstName}. Our team
 									will review your message and get back to you shortly at{" "}

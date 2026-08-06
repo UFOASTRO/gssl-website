@@ -4,6 +4,35 @@ import { notFound } from "next/navigation";
 import ReactMarkdown from "react-markdown";
 import EventGallery from "@/components/EventGallery";
 import { supabase } from "@/lib/supabase";
+import { Metadata, ResolvingMetadata } from "next";
+
+export async function generateMetadata(
+	{ params }: { params: Promise<{ id: string }> },
+	parent: ResolvingMetadata
+): Promise<Metadata> {
+	const { id } = await params;
+	const { data: event } = await supabase
+		.from("events")
+		.select("title, short_description, images")
+		.eq("id", id)
+		.single();
+
+	if (!event) {
+		return {
+			title: "Event Not Found",
+		};
+	}
+
+	return {
+		title: event.title,
+		description: event.short_description,
+		openGraph: {
+			title: event.title,
+			description: event.short_description,
+			images: event.images && event.images.length > 0 ? [event.images[0]] : undefined,
+		},
+	};
+}
 
 export default async function EventPage({
 	params,
