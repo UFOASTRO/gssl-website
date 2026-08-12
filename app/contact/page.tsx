@@ -4,10 +4,12 @@ import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import Link from "next/link";
+import { useForm, ValidationError } from "@formspree/react";
 import type React from "react";
 import { useEffect, useRef, useState } from "react";
 
 export default function ContactPage() {
+	const [state, handleSubmit] = useForm("mvkprakj");
 	const [step, setStep] = useState(1);
 	const [formData, setFormData] = useState({
 		firstName: "",
@@ -24,6 +26,13 @@ export default function ContactPage() {
 	});
 
 	const inputRef = useRef<HTMLInputElement | HTMLTextAreaElement>(null);
+	const formRef = useRef<HTMLFormElement>(null);
+
+	useEffect(() => {
+		if (state.succeeded) {
+			setStep(4);
+		}
+	}, [state.succeeded]);
 
 	useEffect(() => {
 		// Focus the input when the step changes, with a small delay for animation
@@ -68,7 +77,7 @@ export default function ContactPage() {
 	};
 
 	const handleNext = () => {
-		if (validateStep() && step < 4) {
+		if (validateStep() && step < 3) {
 			setStep((prev) => prev + 1);
 		}
 	};
@@ -80,7 +89,20 @@ export default function ContactPage() {
 	const handleKeyDown = (e: React.KeyboardEvent) => {
 		if (e.key === "Enter" && !e.shiftKey) {
 			e.preventDefault();
-			handleNext();
+			if (step === 3) {
+				if (formRef.current) {
+					formRef.current.requestSubmit();
+				}
+			} else {
+				handleNext();
+			}
+		}
+	};
+
+	const onFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+		e.preventDefault();
+		if (validateStep()) {
+			await handleSubmit(e);
 		}
 	};
 
@@ -119,6 +141,7 @@ export default function ContactPage() {
 					<div className="mb-8 w-full">
 						<div className="flex justify-between items-center mb-4 text-xs font-semibold uppercase tracking-wider text-gray-400">
 							<button
+								type="button"
 								onClick={() => setStep(1)}
 								className={`transition-colors hover:text-navy-900 ${step === 1 ? "text-blue-600 font-bold" : ""}`}
 							>
@@ -126,6 +149,7 @@ export default function ContactPage() {
 							</button>
 							<div className="h-[2px] flex-1 bg-gray-200 mx-4" />
 							<button
+								type="button"
 								onClick={() => {
 									if (formData.firstName && formData.lastName) setStep(2);
 								}}
@@ -136,6 +160,7 @@ export default function ContactPage() {
 							</button>
 							<div className="h-[2px] flex-1 bg-gray-200 mx-4" />
 							<button
+								type="button"
 								onClick={() => {
 									if (
 										formData.firstName &&
@@ -163,7 +188,7 @@ export default function ContactPage() {
 					</div>
 				)}
 
-				<div className="bg-white rounded-[24px] p-8 sm:p-12 md:p-16 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100 min-h-[400px] flex flex-col justify-center relative overflow-hidden">
+				<form ref={formRef} onSubmit={onFormSubmit} className="bg-white rounded-[24px] p-8 sm:p-12 md:p-16 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100 min-h-[400px] flex flex-col justify-center relative overflow-hidden">
 					<AnimatePresence mode="wait">
 						{/* Step 1: Name */}
 						{step === 1 && (
@@ -185,6 +210,7 @@ export default function ContactPage() {
 											First Name
 										</label>
 										<input
+											name="firstName"
 											ref={inputRef as React.RefObject<HTMLInputElement>}
 											type="text"
 											value={formData.firstName}
@@ -208,6 +234,7 @@ export default function ContactPage() {
 											Last Name
 										</label>
 										<input
+											name="lastName"
 											type="text"
 											value={formData.lastName}
 											onChange={(e) => {
@@ -228,6 +255,7 @@ export default function ContactPage() {
 								</div>
 								<div className="flex justify-end">
 									<button
+										type="button"
 										onClick={handleNext}
 										className="flex items-center gap-2 bg-navy-900 text-white px-8 py-4 rounded-xl font-medium hover:bg-navy-800 transition-colors group"
 									>
@@ -258,6 +286,7 @@ export default function ContactPage() {
 
 								<div className="mb-8">
 									<input
+										name="email"
 										ref={inputRef as React.RefObject<HTMLInputElement>}
 										type="email"
 										value={formData.email}
@@ -276,12 +305,14 @@ export default function ContactPage() {
 
 								<div className="flex justify-between items-center">
 									<button
+										type="button"
 										onClick={handleBack}
 										className="text-gray-500 hover:text-navy-900 font-medium transition-colors"
 									>
 										Back
 									</button>
 									<button
+										type="button"
 										onClick={handleNext}
 										className="flex items-center gap-2 bg-navy-900 text-white px-8 py-4 rounded-xl font-medium hover:bg-navy-800 transition-colors group"
 									>
@@ -312,6 +343,7 @@ export default function ContactPage() {
 
 								<div className="mb-8">
 									<textarea
+										name="message"
 										ref={inputRef as React.RefObject<HTMLTextAreaElement>}
 										value={formData.message}
 										onChange={(e) => {
@@ -332,19 +364,26 @@ export default function ContactPage() {
 
 								<div className="flex justify-between items-center">
 									<button
+										type="button"
 										onClick={handleBack}
 										className="text-gray-500 hover:text-navy-900 font-medium transition-colors"
 									>
 										Back
 									</button>
 									<button
-										onClick={handleNext}
-										className="flex items-center gap-2 bg-blue-600 text-white px-8 py-4 rounded-xl font-medium hover:bg-blue-700 transition-colors group shadow-lg shadow-blue-600/20"
+										type="submit"
+										disabled={state.submitting}
+										className="flex items-center gap-2 bg-blue-600 text-white px-8 py-4 rounded-xl font-medium hover:bg-blue-700 transition-colors group shadow-lg shadow-blue-600/20 disabled:opacity-50"
 									>
-										Send Message
+										{state.submitting ? "Sending..." : "Send Message"}
 										<ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
 									</button>
 								</div>
+								{state.errors && (
+									<div className="mt-4 text-red-500 text-sm">
+										<ValidationError prefix="Form" field="form" errors={state.errors} />
+									</div>
+								)}
 							</motion.div>
 						)}
 
@@ -379,7 +418,7 @@ export default function ContactPage() {
 							</motion.div>
 						)}
 					</AnimatePresence>
-				</div>
+				</form>
 
 				{step < 4 && (
 					<div className="mt-8 text-center text-sm text-gray-400">
